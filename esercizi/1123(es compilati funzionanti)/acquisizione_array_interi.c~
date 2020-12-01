@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+void acquisisciInteri(int * numIntp, int * * numpp);
+void acquisisciInteri2(int * numIntp, int * nump);
+int main(int argc, char * argv[]){
+	int i, dim, * point;
+	acquisisciInteri(&dim, &point);
+	for (i = 0; i < dim; i++)
+		printf("%d %d\n", dim, point[i]);
+	return 0;
+}
+
+void acquisisciInteri(int * numIntp, int * * numpp){
+	int * nump, i, numInt;
+	
+	scanf("%d", &numInt);
+	if(nump = malloc(numInt * sizeof(int))){
+		for(i = 0; i < numInt; i++)
+			scanf("%d", (nump + i));
+		*numIntp = numInt;
+		*numpp = nump;
+	} else
+		printf("acquisisciInteri: errore nell'allocazione di memoria per %d: interi\n", numInt);
+}
+
+

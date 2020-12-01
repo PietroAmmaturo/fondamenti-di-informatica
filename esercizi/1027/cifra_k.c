@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+/*Scrivere un sottoprogramma cifra che riceve come parametri due interi num e k. Se k `e strettamente
+positivo, il sottoprogramma calcola e restituisce la k-esima cifra del numero num a partire da destra.
+Nel caso in cui k non sia strettamente positivo o k sia maggiore del numero effettivo di cifre di num, il
+sottoprogramma restituisce -1.
+Scrivere un programma che chiede all’utente i due valori num e k ed invoca il sottoprogramma cifra
+visualizzando poi il risultato.
+Ingresso/Uscita:
+input: due interi
+output: un intero*/
+#define BASE 10
+int cifraK(int num, int k);
+int main(int argc, char * argv[]){
+int a, b, ris;
+	scanf("%d", &a);
+	scanf("%d", &b);
+	ris = cifraK(a,b);
+	printf("%d", ris);
+	return 0;
+}
+int cifraK(int num, int k){ /*k = 3 num = 2345*/
+	int ris;
+	if (k > 0){
+		while (k > 1){
+			num = num / BASE;
+			k--;
+		}
+		if (num == 0)
+			ris = -1;
+		else
+			ris = num % BASE;
+	}
+	else
+		ris = -1;
+	return ris;
+}

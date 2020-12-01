@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+/*Si scriva un programma che ricevuti in ingresso al massimo 50 numeri interi positivi (l’acquisizione termina
+quando l’utente inserisce un valore negativo o nullo) calcoli, memorizzi e poi visualizzi (mediante il
+sottoprogramma calcolaMinori) per ognuno dei numeri ni quanti degli altri valori inseriti siano minori
+di ni
+. Il programma principale al termine dell’elaborazione dovr`a avere a disposizione tutti i numeri minori,
+non deve solo visualizzar*/
+#define NUM_MAX_VAL 50
+void calcolaMinori(int *, int, int *);
+int main(int argc, char * argv[]){
+	int nmr[NUM_MAX_VAL], mgg[NUM_MAX_VAL] = {0};
+	int val, i, nval;
+	
+	scanf("%d", &val);
+	nval = 0;
+	while (val > 0){
+		nmr[nval] = val;
+		scanf("%d", &val);
+		nval++;
+	}
+
+	calcolaMinori(nmr, nval, mgg);
+	
+	for(i = 0; i < nval; i++)
+		printf("%d", mgg[i]);
+			
+	return 0;
+}
+void calcolaMinori(int nmr[], int nval, int mgg[]){
+	int i, j;
+	for(i = 0; i < nval; i++){
+		mgg[i] = 0;
+		for(j = 0; j < nval; j++)
+			if (nmr[j] < nmr[i])
+				mgg[i]++;
+	}
+}

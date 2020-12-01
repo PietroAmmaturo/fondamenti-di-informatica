@@ -1,0 +1,11 @@
+/*Scrivere un sottoprogramma che riceve in ingresso una stringa che rappresenta un codice ISBN (International Standard Book Number) utilizzato per identificare univocamente un volume. Il sottoprogramma restituisce 1 se il codice ISBN `e valido, 0 altrimenti. Un codice ISBN `e valido se la “somma delle somme” `e un multiplo di 11. La “somma delle somme” si calcola addizionando ogni cifra del codice alla somma delle precedenti cifre.
+*/
+#include <stdio.h>
+#include <string.h>
+#define MAX_LEN 25
+#define FILE_NAME "./vocab.txt"
+int main(int argc, char * argv[]){
+
+	return 0;
+}
+

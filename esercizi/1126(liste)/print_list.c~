@@ -1,0 +1,21 @@
+
+elem_t * find(elem_t * h, int val)
+{
+	elem_t * tmp;
+
+	tmp = h;
+	while (tmp != NULL) {
+		if (tmp->info == val)
+			return val;
+		tmp = tmp->next;
+	}
+	return tmp;
+}
+
+void print(elem_t * h)
+{
+	elem_t * tmp;
+
+	for (tmp = h; tmp != NULL; tmp = tmp->next)
+			printf("%d", tmp->info);
+}

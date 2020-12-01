@@ -1,0 +1,16 @@
+
+
+elem_t * append(elem_t * h, int val)
+{
+	elem_t * ptr;
+	
+	/* devo cancellare il primo della lista */
+	while (h /* h != NULL */ && h->info == val){
+		del = h;
+		h = h->next; /* la testa guarda al successivo elemento */
+		free(del);
+	}
+	
+	
+	return h;
+}

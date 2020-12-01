@@ -1,0 +1,15 @@
+#define BASE 10
+elem_t * numbertolist(int val, int msd){
+	elem_t * h;
+	h = NULL;
+	int resto;
+	do {
+		resto = n % BASE;
+		if (msd) {
+			h = push(h, resto);
+		} else {
+			h = append(h, resto);
+		}
+	while (n > 0);
+	return h;
+}

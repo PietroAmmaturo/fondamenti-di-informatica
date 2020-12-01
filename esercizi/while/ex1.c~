@@ -1,0 +1,25 @@
+#include <stdio.h>
+#define BASE 10
+
+int main(int argc, char*argv[]) {
+
+	int val;
+	int s;
+	int n;
+	
+	if(scanf("%d", &val)){} //18
+	
+	if(val < 0)
+		n = -val; 
+	else n = val; //18
+	
+	s = n % 10; //s = 8
+	while(n > 0){
+		n = n / BASE; //n = 1
+		s = s + n % 10; //s = 1+8;
+	}
+	
+	printf("%d\n", s); //9
+	
+	return 0;
+}

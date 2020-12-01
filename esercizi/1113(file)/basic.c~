@@ -1,0 +1,52 @@
+
+/*NOTA BENE fare una define per mettere il nome del file, non scriverlo direttamente nel codice*/
+
+
+	fin = fopen(_nomefile_,"r")/*r sta per indicare che voglio leggere dal file*/; /*apre un file*/
+	fout = fopen(_nomefile_,"w")/*w sta per indicare che voglio scrivere sul file*/; /*apre un file*/
+	fp = fopen(_nomefile_,"r")/*rw sta per indicare che voglio leggere dal file e scrivere sul file*/; /*apre un file*/
+	b = fopen(_nomefile_,"a+")/*a+ sta per indicare che...*/; /*apre un file*/
+
+
+	fp = fopen(_nomefile_,"r")
+	if(fp != NULL){
+		/*gestione del cas ideale, nel caso in cui l'apertura vada a buon fine*/
+	} else {
+		/*gestione del caso particolare, errore, nel caso in cui non si riesce ad aprire il file*/
+	}
+	
+	if(fp = fopen(_nomefile_,"r")){
+		/*gestione del cas ideale, nel caso in cui l'apertura vada a buon fine*/
+	} else{
+		/*gestione del caso particolare, errore, nel caso in cui non si riesce ad aprire il file*/
+	}
+	
+	
+	FILE * fp;
+	FILE * fout;
+	
+	/*fscanf funziona solo per i file ascii, tipo i file .txt, file semplici, fatti per essere letti da un umano, ad esempio i file excel NON sono ascii*/
+	/*esistono anche file binari, scritti in binario, questi ultimi sono più efficienti, essendo salvati già in linguaggio macchina poichè non serve che un umano li legga*/
+	
+	fscanf(fp, "%d", &num); /*prende un dato dal file: intero, char, ecc..*/ /*fscanf restituisce EOF(end of file) se è finito il file*/
+	feof(fp); /*si trova sempre dopo una fscanf, ha senso solo dopo una lettura, da 0 se finisce il file, un qualsiasi numero se non finisce il file*/
+	
+	/*come si legge un file? NON CON IL CICLO DO WHILE, CON IL CICLO WHILE, IMPORTANTE, SE SBAGLI ZERO PUNTI!!!*/
+	fscanf(fp, "%d", &num);
+	while(!feof(fp)){
+		/*elaborazione del dato letto*/
+		fscanf(fp, ......);
+	}
+	while(fscanf(fp, ....) !=n EOF){
+		/*elaborazione del dato letto*/
+	}
+	fgets(seq, numcarmax, fp);
+	fprint(fp, "%s %d", seq, num);
+	
+	
+	
+fclose(fin);
+fclose(fout);
+fclose(fp);
+fclose(b);
+

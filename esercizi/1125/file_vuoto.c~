@@ -1,0 +1,2 @@
+/*Scrivere un sottoprogramma fileVuoto che ricevuti in ingresso il nome (inclusa l’estensione) di un file di
+testo ASCII e il suo percorso nel file system restituisce 1 se il file e vuoto, 0 altrimenti.*/

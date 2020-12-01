@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+/*riceve 100 interi e conta e visualizza quante volte è comparso nella sequenza*/
+
+#define NINT 10
+typedef struct occ_s{
+	int valore;
+	int cont;
+} occ_t;
+
+int main(int argc, char * argv[]){
+	
+	occ_t arr[NINT];
+	int i, nval, j, num;
+	
+	scanf("%d", &num);
+	arr[0].valore = num;
+	arr[0].cont = 1;
+	nval= 1 ;
+	for(i = 1; i < NINT; i++){
+		scanf("%d", &arr[i].valore);
+		for(j = 0; j < nval; j++)
+			if (arr[i].valore == arr[j].valore)
+				arr[j].cont++;
+			else{
+				nval++;
+				arr[nval].cont = 1;
+			}
+	}
+	return 0;
+}
+

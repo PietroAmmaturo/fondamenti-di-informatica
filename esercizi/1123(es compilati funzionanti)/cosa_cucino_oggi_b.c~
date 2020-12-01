@@ -1,0 +1,108 @@
+#include <stdio.h>
+
+#define FILE_RIC "./ricette.dat"
+#define FILE_FRI "./frigo.dat"
+#define FILE_OUT "./posso_cucinare.dat"
+#define MAX_LEN 50
+#define NUM_ING 10
+#define NUM_RIC 5
+
+typedef struct ingrediente {
+	char nome[MAX_LEN];
+	float quantita;
+} ingrediente;
+
+typedef struct ricetta {
+	char nome[MAX_LEN];
+	int persone;
+	int numIngredienti;
+	ingrediente ingredienti[MAX_ING];
+} ricetta;
+
+int comparaStringhe(char [], char[]);
+int possoCucinare(ricetta, ingrediente[], int);
+
+int main (int argc, char * argv[]){
+	
+	ricetta ric[NUM_RIC];
+	ingrediente fri[NUM_ING];
+	FILE * fr;
+	FILE * ff;
+	FILE * fo;
+	int i, j;
+	
+	if (fr = fopen(FILE_RIC, "r")){
+		if (ff = fopen(FILE_FRI, "r")){
+			if (ff = fopen(FILE_OUT, "w")){
+					
+					/*memorizza frigo*/
+					i = 0;
+					while (fscanf(ff, "%s", fri[i].nome) != EOF){
+						fscanf(fr, "%d", fri[i].quantita)
+						i++;	
+					}
+					
+					/*memorizza ricette*/
+					i = 0;
+					while (fscanf(fr, "%s", ric[i].nome) != EOF){
+						fscanf(fr, "%d", &ric[i].persone)
+						fscanf(fr, "%d", &ric[i].numIngredienti)
+						for (j = 0; j < NUM_ING; j++){
+							fscanf(fr, "%s", ric[i].ingredienti[j].nome)
+							fscanf(fr, "%f", &ric[i].ingredienti[j].quantita)
+						}
+						i++;
+					}
+					
+					/*salva ricette nel file*/
+					for (i = 0; i < NUM_RIC; i++){
+						if (possoCucinare(ric[i], fri, NUM_ING){ /*se la posso cucinare la salva*/
+							fprintf(ff, "%d", ric[i].persone)
+							fprintf(ff, "%d", ric[i].numIngredienti)
+							for (j = 0; j < NUM_ING; j++){
+								fprintf(ff, "%s", ric[i].ingredienti[j].nome)
+								fprintf(ff, "%f", ric[i].ingredienti[j].quantita)
+							}
+						}
+						i++;
+					}
+			} else {
+					printf("errore nell'apertura del file: %s\n", FILE_OUT);
+			}
+		} else {
+				printf("errore nell'apertura del file: %s\n", FILE_FRI);
+		}
+	} else {
+		printf("errore nell'apertura del file: %s\n", FILE_RIC);
+	}
+	
+int possoCucinare(ricetta ric, ingredienti ingDis[], int numIngDisp){
+	int i, j, trovato;
+	int ris;
+	
+	if (numIng >= ric.numIng){
+		ris = 1;
+		for (i = 0; i < ric.numIng && ris == 1; i++){
+			trovato = 0;
+			for (j = 0; j < numIngDisp && trovato; j++){
+				if (comparaStringhe(ric.ing[i].nome, ingDis[j].nome)
+				&& (ric.ing[i].quantita <= ingDis[j].quantita)){
+					trovato = 1;
+				}
+			}
+			ris = trovato;
+		}
+	} else {
+			ris = 0;
+	}
+	return 0;
+}
+
+int comparaStringhe (char s1[]. char s2[]){
+	int i;
+	for (i = 0; s1[i] != '\0'; i++)
+		if (s1[i] != s2[i])
+			return 0;
+	return 1;
+}
+

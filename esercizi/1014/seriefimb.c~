@@ -1,0 +1,19 @@
+#include <stdio.h>
+#define NUM_VIS 10
+/*Si scriva un programma per visualizzare i primi 10 numeri della serie di Fibonacci. Nella serie di Fibonacci
+(che inizia con i numeri 1, 1), ogni numero si ottiene sommando i due precedenti.
+*/
+int main(int argc, char*argv[]) {
+
+	int num, prv, nxt;
+	prv = 0;
+	for(num = 1; i < NUM_VIS; num++){
+		printf("%d ", num);
+		nxt = prv + num;
+		prv = num;
+		num = nxt;
+		}
+		
+	return 0;
+
+}

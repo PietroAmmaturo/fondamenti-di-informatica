@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+/*Scrivere un programma che chiede all’utente le date di nascita di 100 persone, rappresentate come tre interi
+(il giorno, il mese e l’anno). Il programma poi chiede all’utente una data e conta e visualizza il numero di
+persone nate in quel giorno, e il numero di persone che festeggiano insieme il compleanno in tale data. Il
+programma visualizza i due valori interi, separati da uno spazio e seguiti da un carattere a capo.
+Definire un tipo opportuno per rappresentare le date.
+Realizzare la propria soluzione organizzandola in sottoprogrammi, come ritenuto pi`u opportuno.
+Ingresso/Uscita:
+input: 300 interi + 3 intero
+output: due interi separati da uno spazio e seguiti da un carattere a-capo
+*/
+#define NUM 10
+typedef struct {
+	int giorno, mese, anno;
+}date_s;
+int main(int argc, char * argv[]){
+	date_s nascita[NUM], userDate;
+	int i, nascite, compleanni;
+	
+	for (i = 0; i < NUM; i++){
+		scanf(("%d"), &nascita[i].giorno);
+		scanf(("%d"), &nascita[i].mese);
+		scanf(("%d"), &nascita[i].anno);
+		}
+	
+		scanf(("%d %d %d"), &userDate.giorno,
+					&userDate.mese, &userDate.anno);
+		
+		nascite = 0;
+		compleanni = 0;
+		for (i = 0; i < NUM; i++)
+			if (nascita[i].giorno == userDate.giorno)
+				if (nascita[i].mese == userDate.mese){
+					if (nascita[i].anno < userDate.anno)
+						compleanni++;
+					if (nascita[i].anno == userDate.anno)
+						nascite++;
+					}
+			
+		printf("%d %d", compleanni, nascite); 
+		return 0;
+}

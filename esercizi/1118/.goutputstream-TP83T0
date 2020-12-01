@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+#define NOME_FILE "./ricette.txt"
+#define MAX_LEN 50
+#define MAX_ING 10
+typedef struct{
+	char nome[MAX_LEN];
+	float quantità;
+} ingrediente;
+
+typedef struct {
+	char[MAX_LEN] nome;
+	int numPer;
+	int numIng;
+	ingrediente ingredienti[MAX_ING];
+} ricetta;
+
+int main(int argc; char * argv[]){
+	FILE * fp;
+	
+	fp = fopen(NOME_FILE, "r")
+	if (fp){
+		count = 0;
+		while (fscanf(fp, "%s", 
+			
+	} else {
+		printf("errore nell' apertura del file");
+	}
+
+
+
+}

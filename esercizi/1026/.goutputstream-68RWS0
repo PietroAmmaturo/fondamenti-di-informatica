@@ -1,0 +1,6 @@
+void popolaArray(int * arr[],int dim){
+	do
+	scanf("%d", * arr[i])
+	while (arr[i] != 0);
+	
+}

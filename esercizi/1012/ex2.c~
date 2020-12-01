@@ -1,0 +1,25 @@
+#include <stdio.h>
+#define BASE 10
+/*acquisisce 2 interi positivi o nulli, eleva il primo al secondo*/
+int main(int argc, char*argv[]) {
+	
+	int val, ris, tmp, i;
+	
+	do
+	scanf("%d", &val);
+	while (val < 0);
+	
+
+	if (val == 0 || val == 1)
+		ris = 1;
+	else{
+	ris = val;
+	tmp = val;
+	} for(i = 1; i < val; i++)
+		ris = ris * (tmp-i);
+	
+	printf("%d\n", ris);
+	return 0;
+
+}
+

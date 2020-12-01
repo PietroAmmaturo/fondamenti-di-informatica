@@ -1,0 +1,34 @@
+
+/*NOTA BENE fare una define per mettere il nome del file, non scriverlo direttamente nel codice*/
+
+
+	fin = fopen(_nomefile_,"r")/*r sta per indicare che voglio leggere dal file*/; /*apre un file*/
+	fout = fopen(_nomefile_,"w")/*w sta per indicare che voglio scrivere sul file*/; /*apre un file*/
+	fp = fopen(_nomefile_,"r")/*rw sta per indicare che voglio leggere dal file e scrivere sul file*/; /*apre un file*/
+	b = fopen(_nomefile_,"a+")/*a+ sta per indicare che...*/; /*apre un file*/
+
+
+	fp = fopen(_nomefile_,"r")
+	if(fp != NULL){
+		/*gestione del cas ideale, nel caso in cui l'apertura vada a buon fine*/
+	} else {
+		/*gestione del caso particolare, errore, nel caso in cui non si riesce ad aprire il file*/
+	}
+	
+	if(fp = fopen(_nomefile_,"r")){
+		/*gestione del cas ideale, nel caso in cui l'apertura vada a buon fine*/
+	} else{
+		/*gestione del caso particolare, errore, nel caso in cui non si riesce ad aprire il file*/
+	}
+	
+	
+FILE * fp;
+FILE * fout;
+
+	fscanf(fp, "%d", &num);
+	fgets(seq, numcarmax, fp);
+fclose(fin);
+fclose(fout);
+fclose(fp);
+fclose(b);
+

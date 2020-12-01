@@ -1,0 +1,20 @@
+
+elem * t rimuoviDuplicati(elem_h * h){
+	elem * h;
+	int del;
+	for (p = h; p != NULL; p = p->next){
+		while (ptr = find(h, p->dato)){
+			del = ptr->next;
+			ptr->next = d->next;
+			free(del);
+		}
+	}
+	return h;
+}
+
+elem * t rimuoviDuplicati(elem_h * h){
+	elem *p;
+	for (p = h; p != NULL && p->next != NULL; p = p->next)
+		p->next = delete(p->next, p->dato);
+	return h;
+}

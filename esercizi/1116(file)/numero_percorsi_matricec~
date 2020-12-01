@@ -1,0 +1,32 @@
+#include <std.io>
+
+
+int main(int argc, char * argv[]){
+	int rows, cols;
+	
+	printf("%d", numeroPercorsi(0, 0, rows - 1, cols - 1));
+return 0;
+}
+
+int numeroPercorsi(int curR, int curC, int goalR, int goalC){
+	if(curC > goalC || curR > goalR)
+		return 0;
+	if(curR == goalR && curC == goalC)
+		return 1;
+
+	return calcolapercorsi(curR + 1, curC, goalR, goalC) +
+	calcolaPercorsi(curR, curC + 1, goalR, goalC);
+
+}
+
+int numeroPercorsi(int curR, int curC, int goalR, int goalC){
+	if(curC > goalC || curR > goalR)
+		return 0;
+	else if(curR == goalR && curC == goalC)
+		return 1;
+		else return calcolapercorsi(curR + 1, curC, goalR, goalC) +
+		calcolaPercorsi(curR, curC + 1, goalR, goalC) +
+		calcolaPercorsi(curR + 1, curC + 1, goalR, goalC);
+
+}
+
