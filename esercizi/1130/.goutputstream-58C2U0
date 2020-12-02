@@ -10,12 +10,11 @@
 
 typedef struct _elem {
 	char info;
-	struct _elem * next;
-}list_t;
+	_elem * next;
+}list_t
 
 int validaParentesi(char[]);
-list_t * pop(list_t * h, char * dato);
-list_t * push(list_t * h, char val);
+
 int main (int argc, char * argv[])
 {
 	int ris;
@@ -26,11 +25,10 @@ int main (int argc, char * argv[])
 	return 0;
 }
 
-int validaParentesi(char str[]){
+int validaParentesi(char s[]){
 	list_t *stack;
 	int valida;
 	char p;
-	int i;
 	
 	stack = NULL;
 	valida = 1;
@@ -59,37 +57,21 @@ int validaParentesi(char str[]){
 				}
 			}
 		}
-	}
 	if (stack != NULL)
-		valida = 0;
+		VALIDA = 0;
 		
-	return valida;
+	return VALIDA;
 }
 
 list_t * pop(list_t * h, char * dato){
-	list_t * del;
+	list_t = del;
 	if(h != NULL){
-	*dato = h->info;
-	del = h;
+	*info = h->info;
+	del= h;
 	h = h->next;
 	free(del);
 	} else
 		printf ("la lista non deve essere vuota");
-	return h;
-}
-
-list_t * push(list_t * h, char val)
-{
-	list_t = tmp;
-	
-	if(tmp = malloc(sizeof(list_t))){ /* 0 */
-		tmp->info = val; /* 1 */
-		/* 2 */
-		tmp->next = h; /* tmp punta all' indirizzo a cui puntava la head */
-		h = tmp; /* la head punta ora a tmp */
-	} else
-		printf("push: errore allocazione memoria %c", val);
-		
 	return h;
 }
 

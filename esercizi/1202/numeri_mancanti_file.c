@@ -2,13 +2,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int beforeN(elem_t * h, int n){
-	if (h == NULL)
-		return -1;
-	if (h->info == n)
-		return 1;
-	if (beforeN(h->next, n) > -1)
-		return 1 + beforeN(h->next, n);
-	else
-		return -1;
+elem_t * (char name[]){
+	FILE * fp;
+	int val;
+	int last;
+	elem_t * h;
+	h = NULL;
+	
+	if(fp = fopen(name, "r")){
+		fscanf(fp, "%d", &val);
+		while (fscanf(fp, "%d", &val) != EOF){
+			if (val != last + 1){
+				h = append(h, last + 1);
+			}
+			last = val;
+		}
+		fclose(fp);
+	} else {
+		printf ("errore nell' apertura del file: %s\n", name);
+	}
+	return h;
 }

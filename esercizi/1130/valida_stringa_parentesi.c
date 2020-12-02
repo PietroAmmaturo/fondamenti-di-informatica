@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int validaParentesi(char[]);
+#define T_APERTA '('
+#define Q_APERTA '['
+#define G_APERTA '{'
+#define T_CHIUSA ')'
+#define Q_CHIUSA ']'
+#define G_CHIUSA '}'
 
+typedef struct _elem {
+	char info;
+	struct _elem * next;
+}list_t;
+
+int validaParentesi(char[]);
+list_t * pop(list_t * h, char * dato);
+list_t * push(list_t * h, char val);
 int main (int argc, char * argv[])
 {
 	int ris;
@@ -13,70 +26,71 @@ int main (int argc, char * argv[])
 	return 0;
 }
 
-int validaParentesi(char s[]){
-	int tonde = 0;
-	int quadre = 0;
-	int graffe = 0;
+int validaParentesi(char str[]){
+	list_t *stack;
+	int valida;
+	char p;
 	int i;
 	
-	for (i = 0; s[i] != '\0'; i++) {
-		if (s[i] == '(')
-			tonde++;
-		if (s[i] == '[')
-			quadre++;
-		if (s[i] == '{')
-			graffe++;
-		if (s[i] == ')')
-			tonde--;
-		if (s[i] == ']')
-			quadre--;
-		if (s[i] == '}')
-			graffe--;
-		if (tonde < 0 || quadre < 0 || graffe < 0)
-			return 0;
-		if ((tonde != 0 || quadre != 0) && (graffe == 0))/*problema*/
-			return 0;
-		if ((tonde != 0) && (quadre == 0))
-			return 0;
+	stack = NULL;
+	valida = 1;
+	for(i = 0; str[i] != '\0' && valida == 1; i++) {
+		if (str[i] == T_APERTA || str[i]  == Q_APERTA || str[i] == G_APERTA){
+			stack = push(stack, str[i]);
+		} else {
+			if (stack == NULL)
+				valida = 0;
+			else if (str[i] == T_CHIUSA) {
+				stack = pop(stack, &p);
+				if (p != T_APERTA) {
+					valida = 0;
+				}
+			}
+			else if (str[i] == Q_CHIUSA) {
+				stack = pop(stack, &p);
+				if (p != Q_APERTA) {
+					valida = 0;
+				}
+			}
+			else if (str[i] == G_CHIUSA) {
+				stack = pop(stack, &p);
+				if (p != G_APERTA) {
+					valida = 0;
+				}
+			}
+		}
 	}
-	
-	if ((tonde != 0) || (quadre != 0) || (graffe != 0))
-		return 0;
+	if (stack != NULL)
+		valida = 0;
 		
-	return 1;
+	return valida;
 }
 
-/*
-int validaParentesi(char[] s){
-	int tonde = 0;
-	int quadre = 0;
-	int graffe = 0;
-	
-	elem_t * h, *p;
-	h = NULL;
-	h = stringtolist(validaParentesi);
-	for (p = h; p != NULL; p = p->next) {
-		if (p->dato == '(')
-			tonde++;
-		if (p->dato == '[')
-			quadre++;
-		if (p->dato == '{')
-			graffe++;
-		if (p->dato == ')')
-			tonde++;
-		if (p->dato == ']')
-			quadre++;
-		if (p->dato == '}')
-			graffe++;
-		if (tonde < 0 || quadre < 0 || graffe < 0)
-			return 0;
-		if ((tonde != 0 || quadre != 0) && (graffe == 0))
-			return 0;
-		if ((tonde == 0) && (graffe != 0))
-			return 0;
-	}
-	if ((tonde != 0) || (quadre != 0) || (graffe != 0))
-		return 0;
-	return 1;
+list_t * pop(list_t * h, char * dato){
+	list_t * del;
+	if(h != NULL){
+	*dato = h->info;
+	del = h;
+	h = h->next;
+	free(del);
+	} else
+		printf ("la lista non deve essere vuota");
+	return h;
 }
-*/
+
+list_t * push(list_t * h, char val)
+{
+	list_t * tmp;
+	
+	if(tmp = malloc(sizeof(list_t))){ /* 0 */
+		tmp->info = val; /* 1 */
+		/* 2 */
+		tmp->next = h; /* tmp punta all' indirizzo a cui puntava la head */
+		h = tmp; /* la head punta ora a tmp */
+	} else
+		printf("push: errore allocazione memoria %c", val);
+		
+	return h;
+}
+
+

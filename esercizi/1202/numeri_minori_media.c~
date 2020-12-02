@@ -1,0 +1,22 @@
+elem_t * (int num[], int dim){
+	elem_t * h;
+	h = NULL;
+	float media;
+	int i;
+	media = mediaArray(num, dim);
+	for (i = 0; i < dim; i++)
+		if (num[i] <= media)
+			h = append(h, num[i]);
+
+	return h;
+}
+
+float mediaArray(int num[], dim){
+	int i, s;
+	float media;
+	s = 0;
+	for (i = 0; i < dim; i++)
+		s = s + num[i];
+	media = s / dim;
+	return media;
+}
