@@ -20,7 +20,7 @@ int main(int argc, char*argv[]) {
 		tmp = tmp / BASE;
 		}
 	if(cont<k){
-		for(i=0;i<k-cont;i++)
+		for(i = 0;i < k - cont; i++)
 			printf("0");
 		printf("%d", num);
 	}

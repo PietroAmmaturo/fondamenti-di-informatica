@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #define DIM_ARR 100
-/*ordinamento*/
+/*ordinamento array, in ordine crescente*/
 int main(int argc, char * argv[]){
 	
 	int i, j, dimArr, posMin;

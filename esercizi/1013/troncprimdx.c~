@@ -2,7 +2,7 @@
 #define BASE 10
 int main(int argc, char*argv[]) {
 	
-	int num, tmp, ris, i;
+	int num, tmp, ris, i, half;
 	
 	do
 	scanf("%d", &num);
@@ -12,7 +12,8 @@ int main(int argc, char*argv[]) {
 	ris = 1;
 	while(tmp > 0 && ris == 1){
 		if((tmp % 2 != 0 || tmp == 2) && (tmp != 1)){
-			for(i = 3; i < (tmp / 2); i = i + 2)
+			half = tmp / 2;
+			for(i = 3; i < half; i = i + 2)
 				if(tmp % i == 0)
 					ris = 0;
 		}

@@ -1,0 +1,130 @@
+/*push*/
+list_t * push(list_t * h, int val)
+{
+  list_t * new;
+
+  new = malloc(sizeof(list_t));
+  if(new) {
+    new->info = val;
+    new->next = h;
+    h = new;
+  } else
+    printf("errore nell'allocazione di memoria");
+  return h;
+}
+/*append*/
+list_t append(list_t * h, int val)
+{
+  list_t * p, * new;
+  
+  new = malloc(sizeof(list_t));
+  if(new) {
+    new->info = val;
+    new->next = NULL;
+    if (!h)
+      h = new;
+    else {
+      p = h;
+      while (p->next)
+        p = p->next;
+     p->next = new;
+    }
+  } else
+    printf("errore nell' allocazione di memoria");
+
+  return h;
+}
+/*find*/
+list_t * find(list_t * h, int val)
+{
+  list_t * p;
+  int found;
+  
+  found = 0;
+  p = h;
+  while (p && !found) {
+    if (p->info == val)
+      found = 1;
+    p = p->next;
+  }
+  return p;
+}
+/*delete*/
+list_t * delete(list_t * h, int val)
+{
+  list_t * p, * tmp;
+  while(h && h->info == val) {
+    tmp = h;
+    h = h->next;
+    free(tmp);
+  }
+  p = h;
+  while(p && p->next) {
+    while(p && p->next && p->next->info == val) {
+      tmp = p->next;
+      p->next = p->next->next;
+      free(tmp);
+    }
+    p = p->next;
+  }
+  return h;
+}
+/*pop*/
+list_t * pop(list_t * h)
+{
+  list_t * tmp;
+  if(h){
+    tmp = h;
+    h = h->next;
+    free(tmp);
+  }
+  return h;
+}
+
+list_t * pop(list_t * h, int * val)
+{
+  list_t * tmp;
+  if(h){
+    tmp = h;
+    *val = h->info;
+    h = h->next;
+    free(tmp);
+  } else
+      *val = NULL;
+  return h;
+}
+
+int pop(list_t * * h)
+{
+  list_t * * tmp;
+  if(h){
+    *tmp = *h;
+    ris = *h->info;
+    *h = *h->next;
+    free(*tmp);
+  }
+  return ris;
+}
+/*count*/
+/*incr*/
+list_t * increasing(list_t * h, int val)
+{
+  list_t * p;
+  
+  if(new = malloc(sizeof(list_t))){
+    new->info = val;
+    if(h && h->info < val) {
+      while(p->next->info < new->info) {
+        p = p->next;
+      }
+      new->next = p->next;
+      p->next = new;
+    } else {
+      new->next = h;
+      h = new;
+    }
+  } else
+    printf("errore allocazione di memoria");
+  return h;
+}
+/*decr*/

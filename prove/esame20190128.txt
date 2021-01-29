@@ -1,0 +1,236 @@
+A = -62_10MS
+B = +54_16MS
+
+|A|_2MS = 0111110
+
+62 0
+31 1
+15 1
+7 1
+3 1
+1 1
+0
+
+|A|_2C2 = 0111110
+A_2C2 = 1000010
+
+
+|B|_2MS = 01010110 
+
+5 = 0101
+4 = 0100
+
+|B|_2C2 = 01010100 
+B_2C2 = 01010100
+
+estendo A in segno per l'aritmetica
+A_2C2 = 11000010
+
+A + B =
+......11..
+..1.......
+..11000010+
+..01010100=
+..--------
+..000101110
+
+non si verifica overflow: segni discordi
+
+-B = 10101100
+A - B = A + (-B) =
+.1.....1..
+..........
+..11000010+
+..10101100=
+..--------
+..01101110
+
+si verifica overflow: operandi negativi e risultato positivo
+
+################################################################
+
+typedef struct {
+  int x, y;
+} point_t;
+
+int regolare(point_t mat[][N])
+{
+  int i, j, dim;
+  float lendiag;
+  float lenline;
+  int ris;
+
+  dim = N;
+
+  lendiag = 0;
+  for(i = 0; i < (dim - 1); i++)
+      lendiag += dist(mat[i][i], mat[i+1][i+1]);
+  
+  lenline =0;
+  ris = 1;
+  for(i = 0; i < (dim) && ris; i++){
+    for(j = 0; j < (dim - 1); j++){
+      lenline += dist(mat[j][i], mat[j+1][i]);
+    }
+    if(lenline > lendiag)
+      ris = 0;
+  }
+  
+  for(i = 0; i < (dim) && ris; i++){
+    for(j = 0; j < (dim - 1); j++){
+      lenline += dist(mat[i][j], mat[i][j+1]);
+    }
+    if(lenline > lendiag)
+      ris = 0;
+  }
+  
+  return ris;
+}
+
+###################################################################
+
+tutto sbagliato
+*******************************************************************
+int genera(char s[])
+{
+  static int cont = 0;
+  int localcont;
+  int i;
+
+  localcont = 0;
+  for (i = 0; s[i] != '\0'; i++)
+    if (s[i] == 'x' && localcont < cont){
+      printf("1");
+      localcont++;
+      cont++;
+    } else if (s[i] == 'x' && localcont >= cont){
+      printf("0");
+      cont++;
+    } else {
+      printf("%c", s[i]);
+    }
+
+  return (genera(s));
+}
+********************************************************************
+
+void genera(char s[], int len)
+{
+  int i;
+  char * new;
+  
+  for (i = 0; s[i] != '\0' && s[i] != 'x'; i++);
+    if(s[i] == 'x') {
+      if(new = malloc(sizeof(char)*len)){
+        strcpy(new, s);
+        new[i] = '0';
+        genera(new,len);
+        
+      }
+      if(new = malloc(sizeof(char)*len)){
+        strcpy(new, s);
+        new[i] = '1';
+        genera(new,len);
+      }
+    }
+   if(s[i] == '\0')
+     printf("%s\n", s);
+}
+
+int main(intargc, char * argv[])
+{
+  if(argc == 2){
+    genera(argv[1], strlen(argv[1]));
+  } else {
+    printf("errore, si aspetta un valore da riga di comando");
+  }
+  return 0;
+}
+
+
+#####################################
+
+int sottoprogramma(FILE * fp)
+{
+  int occ[BASE];
+  int maxocc;
+  int ris;
+  int val;
+  int tmp;
+  int cifra;
+
+  fscanf(fp, "%d", &val);
+  if(!feof(fp)){
+    tmp = val;
+    while (tmp > 0){
+      cifra = tmp % BASE;
+      occ[cifra]++;
+      tmp = tmp / BASE;
+    }
+
+    for (i = 0; i < BASE; i++){
+      if (occ[i] >= maxocc){
+        maxocc = occ[i];
+        ris = i;
+      }
+    }
+  } else {
+    ris = -1;
+  }
+
+  return ris;
+}
+
+###################################################
+
+
+list_t * listadis(list_t * h)
+{
+  list_t * p. *newh;
+  
+  newh = NULL;
+  
+  if(h) {
+    p = h->next;
+    while (p != NULL) {
+      newh = append(newh, p->info);
+      p = p->next;
+      if(p)
+        p = p->next;
+    }
+  }
+  return newh;
+}
+
+list_t * append(list_t * h, int val)
+{
+  list_t * p, * new;
+  
+  if (new = malloc(sizeof(list_t)){
+    new->info = val;
+    new->next = NULL;
+    if (h){
+      for(p = h; p->next != NULL, p = p->next)
+        ;
+      p->next = new;
+    } else {
+      h = new;
+    }
+  } else {
+      printf("append: errore allocazione memoria per un elemento list_t");
+  }
+  return h;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.

@@ -1,0 +1,155 @@
+X = -57_16MS
+Y = 111001110_2C2
+
+-X = 01010111_2MS = 01010111_2C2
+
+5_15 = 0101_2
+7_16 = 0111_2
+
+X = 10101001_2C2
+
+Y = 111001110_2C2 = riduzione in segno = 1001110_2C2
+
+X = 10101001_2C2
+Y = 1001110_2C2
+
+per l'aritmetica estendo Y
+Y = 110011101_2C2
+
+X + Y =
+.1...1....
+..........
+..10101001+
+..11001110=
+..--------
+..01110111
+
+si verifica overflow: operandi negativi, risultato positivo
+
+-Y = 00110010
+X - Y = X + (- Y) =
+...........
+...1.......
+..10101001+
+..00110010=
+..--------
+..11011011
+
+non si verifica overflow: operandi di segno opposto
+
+X + Y = 01110111
+X - Y = 11011011
+
+#########################################################################
+
+Z = 41540000
+Z_2 = 01000001010101000000000000000000
+
+segno: 0
+esponente(+127) = 10000010
+mantissa = 10101000000000000000000
+
+calcolo l'esponente
+10000010_2 = 130_10 --> 130 - 127 = 3
+
+esplicito la mantissa (inserisco l'1 che viene omesso)
+1.mantissa = 1.10101_2 (si omettono gli zeri al termine, non portano contributi)
+
+sposto la virgola di 3 posti (exp = 3)
+110.101_2 *1101.01
+
+converto la parte intera
+110_2 = 4 + 1 = 5_10 *13
+
+conveto la parte decimale
+101_2 = 1/2 + 1/8 = 0.5 + 0.125 = 0.635_10 *12
+
+il mio risultato sarà
+Z = +5.635_10 *13.25
+
+############################################################################
+
+char * crop(char frase[], char ch)
+{
+  int indexfirst, indexsecond;
+  int len;
+  int i, cont;
+  char * new;
+  
+  cont = 0;
+  for(i = 0; frase[i] != '\0' && cont < 2; i++)
+    if(frase[i] == ch){
+      cont++;
+      if (cont == 1)
+        indexfirst = i;
+      else
+        indexsecond = i
+    }
+
+  if (cont < 2)
+    return NULL;
+
+  len = indexsecond - indexfirst + 2;
+  if (new = malloc(sizeof(char) * len)){
+    len--;
+    *(new + len - 1) = '/0';
+    for(i = 0; i < len; i++)
+      *(new + i) = frase[indexfirst + i];
+  } else 
+      printf("errore allocazione memoria per %d char", len);
+
+  return new;
+}
+
+int main(int argc, char * argv[])
+{
+  char * cropped;
+  if(argc == 2){
+    cropped = crop(argv[1], *argv[2]);
+    printf("%s", cropped);
+  } else
+    printf("si aspettano 2 valori da riga di comando");
+  return 0;
+}
+
+########################################################################
+
+int statoFile(char nome[])
+{
+  FILE * fp;
+  int ris;
+  char c;
+
+  if(fp = (nome, "r")){
+    if(fscanf(fp, "%c", c) != EOF)
+      ris = 0;
+    else
+      ris = 1; 
+    fclose(fp);
+  } else {
+    ris = -1;
+  }
+  return ris;
+}
+
+##########################################################################
+
+typedef struct elem_s{
+  int info;
+  struct elem_s * next;
+} list_t;
+
+list_t * extract(list_t * h, int start)
+{
+  list_t * p, *head;
+
+  head = NULL;
+  p = h;
+  while (p) {
+    for(i = 0; i < p->info; i++)
+      new = append(new, start);
+    start = 1 - start;
+    p = p->next;
+  }
+  return head;
+}

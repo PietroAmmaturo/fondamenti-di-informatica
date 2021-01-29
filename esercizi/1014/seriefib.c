@@ -15,7 +15,7 @@ int main(int argc, char*argv[]) {
 		printf("%d ", num);
 		prv = lst;
 		lst = nxt;
-		}
+	}
 		
 	return 0;
 

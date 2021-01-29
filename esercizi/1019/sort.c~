@@ -14,7 +14,7 @@ int main(int argc, char * argv[]){
 	for (i = 0; i < dimArr - 1; i++){
 		posMin = i;
 		for( j = i + 1; j < dimArr; j++)
-			if (arr[j] < arr[posMin];
+			if (arr[j] < arr[posMin])
 				posMin = j;
 		tmp = arr[i];
 		arr[i] = arr[posMin];

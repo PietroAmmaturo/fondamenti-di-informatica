@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define MAXH 16
+/* crea le piramidi di super mario */
 int main(int argc, char*argv[]) {
 	
 	int h, i, j;

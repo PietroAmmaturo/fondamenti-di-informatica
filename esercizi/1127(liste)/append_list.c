@@ -11,10 +11,9 @@ elem_t * append(elem_t * h, int val)
 		tmp->next = NULL; /* tmp punta all' indirizzo NULL*/
 		if (h){
 			ptr = h;
-			while (ptr->next != NULL) {
+			while (ptr->next != NULL)
 					ptr = ptr->next;
-				ptr->next = tmp;
-			}
+			ptr->next = tmp;
 		} else
 				h = tmp;
 	} else

@@ -1,4 +1,5 @@
 #include <stdio.h>
+/* minimo e massimo*/
 int main(int argc, char*argv[]) {
 	int min , max ;
 	int val , cont , tot ;

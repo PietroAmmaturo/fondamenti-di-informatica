@@ -1,0 +1,269 @@
+A = +57_10MS
+B = +3A_16MS
+
+|A| = +57_10MS = 0111001_2MS = 0111001_2C2
+57 1
+28 0
+14 0
+07 1
+03 1
+01 1
+00
+A = |A| = 0111001_2C2
+
+|B| = +3A_16MS = 00111010_2MS --> riduzione --> 0111010_2MS = 0111010_2C2
+3 = 0011_2
+A = 1010_2
+B = |B| = 0111010_2C2
+
+A + B =
+..111....
+.........
+..0111001+
+..0111010=
+..-------
+..1110011
+
+si verifica overflow: operandi positivi e risultato negativo
+
+-B = -(0111010_2C2) = 1000110_2C2
+A - B = A + -B =
+.........
+.........
+..0111001+
+..1000110=
+..-------
+..1111111
+
+non si verifica overflow: operandi discordi
+
+A = 0111001_2C2
+B = 0111010_2C2
+A + B = 1110011_2C2 overflow
+A - B = 1111111_2C2 no overflow
+
+########################################################################
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define SKIP1 ' '
+#define SKIP2 '\n'
+#define MAX_LEN 300
+int main(int argc, char * argv[])
+{
+  FILE * fp;
+  int nrighe;
+  int ncar;
+  int nmaxcar, nmincar, nmedcar, ntotcar;
+  char riga[MAX_LEN + 1];
+  char maxriga[MAX_LEN + 1];
+  int i;
+  
+  if(argc == 2) {
+    if(fp = fopen(argv[1], "r")){
+      nrighe = 0;
+      ncar = 0;
+      fgets(riga, MAX_LEN, fp);
+      if(!feof(fp)){
+        nrighe++;
+        for(i = 0; riga[i] != '\0'; i++)
+          if(riga[i] != SKIP1 && riga[i] != SKIP2)
+            ncar++;
+        ntotcar = ncar;
+        nmaxcar = ncar;
+        nmincar = ncar;
+        strcpy(maxriga, riga);
+      }
+      fgets(riga, MAX_LEN, fp);
+      while(!feof(fp)){
+        ncar = 0;
+        nrighe++;
+        for(i = 0; riga[i] != '\0'; i++)
+          if(riga[i] != SKIP1 && riga[i] != SKIP2)
+            ncar++;
+        ntotcar += ncar;
+        if(ncar < nmincar)
+          nmincar = ncar;
+        else if (ncar > nmaxcar) {
+          nmaxcar = ncar;
+          strcpy(maxriga, riga);
+        }
+        fgets(riga, MAX_LEN, fp);
+      }
+      nmedcar = ntotcar / nrighe;
+      printf("%d\n %d\n %d %d\n %s\n", nrighe, ntotcar, nmaxcar, nmedcar, maxriga);
+      fclose (fp);
+    } else {
+      printf("errore apertura file");
+    }
+  } else {
+    printf("si aspetta un valore da riga di comando");
+  }
+  return 0;
+}
+#####################################################################################
+
+#define BASE 10
+int cifraMaggiore(int val)
+{
+  int cifra, max;
+  if (val)
+    max = cifraMaggiore(val/BASE);
+  cifra = val % BASE;
+  if (cifra > max)
+    max = cifra;
+  return max;
+}
+
+######################################################################################
+
+list_t * alternaeincoda(list_t * h1, list_t * h2)
+{
+  list_t * newh, *p1, *p2;
+  newh = NULL;
+  
+  p1 = h1;
+  p2 = h2;
+  while (p1 && p2) {
+    newh = push(newh, p1->info);
+    newh = push(newh, p2->info);
+    p1 = p1->next;
+    p2 = p2->next;
+  }
+  while (p1) {
+    newh = push(newh, p1->info);
+    p1 = p1->next;
+  }
+  while (p2) {
+    newh = push(newh, p2->info);
+    p2 = p2->next;
+  }
+
+  return newh;
+}
+
+list_t push(list_t * h, int val)
+{
+  list_t * new;
+
+  if(h && new = malloc(sizeof(list_t))) {
+    new->info = val;
+    new->next = h->next;
+    h->next = new;
+  }
+
+  return h;
+}
+
+##########################################################################################
+
+int main(int argc, char * argv[])
+{
+  int num1[LEN];
+  int num2[LEN];
+  int i, j, ris;
+
+  for(i = 0; i < LEN; i++){
+    scanf("%d", &num1[i]);
+  }
+  for(i = 0; i < LEN; i++){
+    scanf("%d", &num2[i]);
+  }
+
+  uguali = 1;
+  for(j = 0; j < LEN && uguali; j++)
+    if(num1[j] != num2[j])
+      uguali = 0;
+
+  for(i = 0; i < LEN && !uguali; i++) {
+    scorri(num2, dim);
+    uguali = 1;
+    for(j = 0; j < LEN && uguali; j++)
+      if(num1[j] != num2[j])
+        uguali = 0;
+  }
+  if(uguali)
+    ris = i;
+  else
+    ris = -1;
+
+  printf("%d", ris);
+
+  return 0;
+}
+
+void scorri(int num[], int dim)
+{
+  int tmp;
+  tmp = num[dim - 1];
+  for(i = 1; i < dim; i++)
+    num[i] = num[i-1];
+  num[0] = tmp;
+}
+
+#define FN dizionario.txt
+#define MAXLEN 35
+int main(int argc, char*argv[])
+{
+  FILE * fp;
+  char vocabolo[MAXLEN + 1];
+  char vocali[LENVOC] = {'a','e','i','o','u'};
+  int i, j, indvoc, trovata, crescenti;
+
+  if(fp = fopen(FN, "r")){
+    while(fgets(vocabolo, MAXLEN, fp) != EOF) {
+      crescenti = 1;
+      indvoc = 0;
+      for(i = 0; vocabolo[i] != '\0' && crescenti; i++) {
+        trovata = 0;
+        for(j = 0; vocali[j] != '\0' && !trovata; j++) {
+          if(vocabolo[i] == vocali[j]){
+            trovata = 1;
+            if(j >= indvoc)
+              indvoc = j;
+            else
+              crescenti = 0;
+          }
+        }
+      }
+      printf("%s", vocabolo);
+    }
+    fclose (fp);
+  } else {
+    printf("errore apertura file");
+  }
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

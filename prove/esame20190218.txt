@@ -1,0 +1,199 @@
+A = -55_10MS
+B = -1A_16MS
+
+-A_2MS = -A_2C2 = 0110111
+
+55 1
+27 1
+13 1
+6 0
+3 1
+1 1
+0
+
+A = -(-A) = 1001001
+
+-B_2MS = -B_2C2 = 00011010
+
+1 = 0001
+A = 1010
+
+B = -(-B) = 11100110 --> riduzione --> 100110
+
+estendo B per effettuare operazioni algebriche B = 1100110
+A + B =
+.1.........
+..........
+..1001001+
+..1100110
+..-------
+..0101111
+
+si verifica overfow: operandi negativi, risultato positivo
+
+-B = 0011010
+A - B = A + (-B) =
+....1.......
+..........
+..1001001+
+..0011010=
+..-------
+..1100011
+
+non si verifica overflow: operandi discordi
+
+########################################################################
+
+A = C0780000
+A_2 = 11000000011110000000000000000000
+
+sign_2 = 1
+exp_2 = 1000 0000 --> exp_10 = 128 --> esponente = 128 - 127 = 1
+mantissa_2 = 1111 0000
+
+visto l'esponente, occorre spostare la virgola di un posto, dunque, in virgola fissa e base due:
+
+A = 11.111
+
+la parte intera è 
+1 --> in base 10 --> 2+1 = 3
+
+la parte decimale è 
+.111 in base 10 --> .(1/2 + 1/4 + 1/8) = 0.5 + 0.25 + 0.125 = 0.875
+
+A_10 = -3.875
+
+void proprietaMatrice(int mat[][NCOL], int nr, int val, int * ic, int * ir)
+{
+  int sum;
+
+  sum = 0;
+  for (i = 0; i < nr && !found; i++)
+    for (j = 0; j < NCOL && !found; j++){
+      sum += mat[i][j];
+      if (sum == val){
+        found = 1;
+      }
+    }
+  *ic = j;
+  *ir = i;
+}
+
+
+################################################################
+
+#define FNAME ./dizionario.txt
+#define MAX_LEN 25
+
+int dimmianagrammi(char s[])
+{
+  FILE * fp;
+  char parola[MAX_LEN];
+  int anagrammi;
+
+  if(fp = fopen(FNAME, "w")){
+     while(fscanf("%s", parola)){
+       if(anagramma(parola, s))
+         anagrammi++;
+     }
+   fclose (fp);
+   } else {
+     printf("errore nell' apertura del file");
+     return -1;
+   }
+
+  return anagrammi;
+}
+
+modificando il programma dimmianagrammi, occorre che questo converta i numeri in stringa:
+sia quello ricevuto dall'utente (per convertire quello ricevuto dall'utente serve un opportuno sottoprogramma, che non sto qui a scrivere)
+sia quelli letti dal file (per convertire quelli provenienti dal file basta leggerli come stringhe e non come numeri)
+
+modificando il sottoprogramma anagramma, occorre che questo converta i numeri in stringa:
+in questo caso per entrambi serve un opportuno algoritmo
+
+conviene modificare il programma
+
+
+##################################################
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+}
+
+#define BASE 10
+list_t * int2list(int val)
+{
+  list_t * h;
+  int num;
+
+  h = NULL;
+  if(num > 0) {
+    num = val;
+    while (num > 0) {
+      tmp = num % BASE;
+      for (i = 0; i < tmp; i++)
+        h = append(h, tmp);
+      num = num / BASE;
+    }
+  } else {
+      num = - val;
+      while (num > 0) {
+      tmp = num % BASE;
+      for (i = 0; i < tmp; i++)
+        h = push(h, tmp);
+      num = num / BASE;
+    }
+  }
+  return h;
+}
+
+list_t *append (list_t *h, val)
+{
+  list_t *h, *new;
+  
+  if(new = malloc(sizeof(list_t))){
+    new->next = NULL;
+    new->info = val;
+    if (h) {
+      for (p = h; p->next != NULL; p = p->next)
+        ;
+      p->next = new;
+    } else {
+      new = h;
+    }
+  } else {
+    printf("errore nell'allocare memoria per un elemento della lista");
+  }
+  return new;
+}
+
+list_t *push (list_t *h, val)
+{
+  list_t *h, *new;
+  
+  if(new = malloc(sizeof(list_t))){
+    new->info = val;
+    if (h) {
+      new->next = h->next;
+      h->next = new;
+    } else {
+      h->next = new;
+      new->next = NULL;
+    }
+  } else {
+    printf("errore nell'allocare memoria per un elemento della lista");
+  }
+  return h;
+}
+
+int main(int argc, char * argv[])
+{
+  if (argc == 1){
+    int2list(atoi(argv[1]));
+  } else {
+    printf("errore, si aspettava un intero");
+  }
+ return 0;
+}

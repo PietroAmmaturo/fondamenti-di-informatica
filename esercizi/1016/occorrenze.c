@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-/*riceve 100 interi e conta e visualizza quante volte è comparso nella sequenza*/
+/*riceve 100 interi e conta e visualizza quante volte è comparso nella sequenza
+NOTA BENE : non li salva ripetuti più volte, salva solo il singolo valore e le occorrenze */
 
 #define NINT 100
 typedef struct occ_s{

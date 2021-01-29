@@ -15,11 +15,11 @@ int main(int argc, char*argv[]) {
 	
 	tmp = num;
 	cont = 1;
-	while (tmp > 0){
+	while (tmp > 0){ /* numero di cifre di tmp*/
 		cont++;
 		tmp = tmp / BASE;
 		}
-	if(cont<k){
+	if (cont < k) { /* indenta il numero con tanti zeri a sinistra quanti mancano per raggiungere k cifre*/
 		for(i = 0;i < k - cont; i++)
 			printf("0");
 		printf("%d", num);

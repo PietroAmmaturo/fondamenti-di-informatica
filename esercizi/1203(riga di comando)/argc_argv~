@@ -1,0 +1,11 @@
+int main(int argc, char * argv[])
+/*
+argv[] è un array di indirizzi di caratteri (di dove iniziano stringhe) essendo stringhe sappiamo anche dove terminano, interessante
+argc è il numero dei elementi di questo array
+
+esempi di utilizzo: 
+
+%./convertibinario 321
+%./selezionaprimi filein.txt fileout.txt
+%./leggiorg una sequenza di qualche parola...
+*/

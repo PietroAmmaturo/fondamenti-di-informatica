@@ -6,15 +6,15 @@ int main(int argc, char*argv[]) {
 	
 	do
 	scanf("%d", &h);
-	while (h<=0 || h>MAXH);
+	while (h <= 0 || h > MAXH);
 	
-	for(i=1; i<=h; i++){
-		for(j=h; j>i; j--)
+	for(i = 1; i <= h; i++){
+		for(j = h; j > i; j--)
 			printf(" ");
-		for(j=0; j<i; j++)
+		for(j = 0; j < i; j++)
 			printf("#");
 		printf("  ");
-		for(j=0; j<i; j++)
+		for(j = 0; j < i; j++)
 			printf("#");
 		printf("\n");
 	}

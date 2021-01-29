@@ -1,0 +1,12 @@
+#include <stdio.h>
+/*scrivere un programma che ricevuta in ingresso una stringa chiama validaStringa e visualizza il risultato*/
+int main(int argc, char * argv[])
+{	
+	int risultato;
+	char * stringa;
+	stringa = argv[1];
+	risultato = validaParentesi(stringa);
+	printf("%d", risultato);
+	return 0;
+}
+

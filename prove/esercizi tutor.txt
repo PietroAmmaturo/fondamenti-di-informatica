@@ -1,0 +1,79 @@
+typedef struct {
+  int valore;
+  chae chiave;
+} dato;
+
+int main(int argc, char * argv)
+{
+  FILE *fp;
+  dato tmp;
+  int found;
+
+  if(fp = fopen("./archivio", "rb"){
+    found = 0;
+    while(fread(tmp, sizeof(dato), 1, fp) != EOF && !found){
+      if (tmp.chiave == '#'){
+        found = 1;
+        numero = tmp.valore;
+      }
+      rewind(fp);
+      fwrite(&numero, sizeof(int), 1, fp);
+    }
+    fclose(fp);
+  } else {
+    printf("errore apertur file");
+  }
+  return 0;
+}
+########################################################
+int main(int argc, char * argv[])
+{
+  int a, b;
+  char c;
+
+  if(argc == 1){
+    if(fp = fopen(argv[1], "r"){
+      while(fscanf("%c, &c")!= EOF && c != ',')
+        ;
+      valida = 1;
+      while(fscanf("%d)(%d,", a, b) == 2 && valida)
+        if (a != b)
+          valida = 0;
+       if (valida)
+        printf("è una catena");
+       else
+        printf("non è una catena");
+      fclose(fp);
+    } else {
+      printf("errore apertura file");
+    }
+  } else {
+    printf("errore: ci si aspetta un valore da riga di comando");
+  }
+  return 0;
+}
+##########################################################
+
+void massimiLocali(int * mat, nr, nc)
+{
+  for(i = 1; i < nr - 1; i=i+2)
+    for(j = 1; j < nc - 1; j=j+2)
+      zeroAllButMax(*(mat + (j-1) + (i-1) * nc), 3, 3);
+}
+
+void zeroAllButMax(int * m, nr, nc)
+{
+  int max;
+  int i, j;
+
+  max = *m;
+  for(i = 0; i < nr; i++)
+    for(j = 0; j < nc; j++)
+      if(*(m + j + (i*nc)) > max)
+        max = *(m + j + (i * nc));
+
+  for(i = 0; i < nr; i++)
+    for(j = 0; j < nc; j++)
+      if(*(m + j + (i * nc)) != max)
+        *(m + j + (i * nc)) = 0;
+}

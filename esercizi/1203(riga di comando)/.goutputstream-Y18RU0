@@ -1,0 +1,9 @@
+#include <stdio.h>
+/*./trovaprimi -i filesrc.txt -o fileout.txt*/
+/*./trovaprimi -o filesrc.txt -i fileout.txt*/
+int main(int argc, char * argv[])
+{	
+
+	return 0;
+}
+

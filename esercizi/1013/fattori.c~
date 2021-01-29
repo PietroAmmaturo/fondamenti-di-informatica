@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+/* vede se b è divisibile per a o viceversa */
 int main(int argc, char*argv[]) {
 	
 	int a, b, ris;

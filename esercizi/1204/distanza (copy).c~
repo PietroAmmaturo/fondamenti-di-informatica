@@ -1,0 +1,70 @@
+/*scrivere un programma che riceve da riga di comando la lunghezza di due sequenze di interi e un intero che vale 1 o 0 per indicare se verrà fornita una sequenza di pesi, il programma chiama poi il sottoprogramma distanza e visualizza il risultato
+*/
+
+
+#include <stdio.h>
+#include <math.h>
+
+#define ZERO '0'
+int main(int argc, char * argv[])
+{
+	int *strdim, *strpesi;
+	int dim;
+	int i,val;
+	int * u, *v, *p;
+	float de, dep, ris;
+	
+	if(argc == 3){
+	strdim = argv[1];
+	strpesi = argv[2];
+	dim = atoi(strdim);
+	if(u = malloc(sizeof(int) * dim)){
+		if(v = malloc(sizeof(int) * dim)){
+			for(i = 0; i < dim; i++)
+				scanf("%d", (u + i));
+			for(i = 0; i < dim; i++)
+				scanf("%d", (v + i));
+			if(!strcmp(strpesi, PESATA)){
+				if(p = malloc(sizeof(float) * dim)){
+					for(i = 0; i < dim; i++)
+						scanf("%f", (p + i))
+					
+				distanza(u, v, p, dim, &distanza, &distanzapesata);
+				printf("%d\n", distanzapesata);
+				free(p);
+				} else{
+				}
+			} else {
+				pesi = NULL;
+				distanza(u, v, p, dim, &distanza, &distanzapesata);
+				printf("%d\n", distanzapesata);
+			}
+			free(v);
+		} else {
+		}
+		free(u);
+	} else {
+	}
+	
+	return 0;
+}
+void distanza(int u[], int v[], float p[], dim, float * dist, float * distp){
+	int dist, diffp, differenza, prodotto;
+	dist = 0;
+	diffp = 0;
+	if (p[0] != NULL){
+		for (i = 0; i < dim; i++){
+			differenza = u[i] - v[i]n;
+			prodotto = p[i] * differenza * differenza;
+			diffp = diffp + prodottopes;
+		}
+		*distp = sqrt(diffp);
+	} else {
+		for (i = 0; i < dim; i++){
+			differenza = u[i] - v[i]n;
+			prodotto = differenza * differenza;
+			dist = dist + prodotto;
+		}
+		*dist = sqrt(dist);
+	}
+}

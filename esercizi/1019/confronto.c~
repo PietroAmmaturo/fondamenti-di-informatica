@@ -2,7 +2,7 @@
 #include <string.h>
 #define NAME_LEN 50
 #define OP_NUM 10
-
+/*vedere quale tra 10 compagnie è la migliore per luce e gas dato il consumo dell' utente amountG, amountE e il costo per unita*/
 typedef struct {
 	char name[NAME_LEN + 1];
 	float costEU;

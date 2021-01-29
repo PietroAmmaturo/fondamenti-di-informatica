@@ -2,7 +2,7 @@
 #include <string.h>
 /*riceve 100 interi e conta e visualizza quante volte è comparso nella sequenza*/
 
-#define NINT 10
+#define NINT 100
 typedef struct occ_s{
 	int valore;
 	int cont;

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #define BASE 10
+
+/* vede se il numero oppure uno dei numeri che si ottengono troncandolo a destra sono primi, se si, restituisce 1, altrimenti 0*/
 int main(int argc, char*argv[]) {
 	
 	int num, tmp, ris, i, half;

@@ -15,28 +15,32 @@ int main(int argc, char * argv[]){
 	float amountE, amountG, minCost, cost;
 	operator_t companies[OP_NUM];
 	
-	
 	validCompanies = 0;
 	scanf("%d", &willInsert);
 	while(willInsert && validCompanies < OP_NUM){
 		scanf("%s", companies[validCompanies].name);
 		scanf("%f", &companies[validCompanies].costEU);
 		scanf("%f", &companies[validCompanies].costGU);
-		
 	validCompanies++;
 	scanf("%f", &willInsert);		
-	}
-		
+	}	
 	scanf("%f", &amountE);
 	scanf("%f", &amountG);
 				
 	bestCompany = 0;
 	minCost = companies[bestCompany].costEU * amountE +
-							companies[i].costGU * amountG;
+				companies[bestCompany].costGU * amountG;
 	for (i = 0; i < validCompanies; i++){
 		cost = companies[i].costEU * amountE +
-		companies[i]
-		
+				companies[i].costGU * amountG;
+		if (cost < minCost) {
+			minCost = cost;
+			bestCompany = i;
+		}
+	}
+	
+	printf("%d\n", companies[bestCompany].name);
+	
 	return 0;
 }
 

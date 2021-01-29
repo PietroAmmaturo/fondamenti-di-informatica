@@ -1,0 +1,193 @@
+A = -37_10MS
+B = -37_16MS
+
+-A = 37_10MS = 0100101 /*0 è il bit di segno*/
+
+37 1
+18 0
+09 1
+04 0
+02 0
+01 1
+0
+
+-A_2C2 = -A_2MS = 0100101
+
+A_2C2 = 1011011
+
+-B = 37_16MS = 00110111 --> riduco --> 0110111
+
+3 = 0011
+7 = 0111
+
+B_2C2 = 1001001
+
+A + B = 
+.1.11.11....
+..........
+..1011011+
+..1001001=
+..-------
+..0100100
+
+si verifica overflow: operandi negativi e risultato positivo
+
+ricrdo che -B = 0110111
+A - B = A + (-B) =
+
+.1111111.
+.........
+..1011011+
+..0110111
+..-------
+..0010010
+
+non si verifica overflow: operandi discordi
+
+####################################################################################
+
+A = 0x41888000
+A = 01000001100010001000000000000000
+
+segno: 0
+esponente (non corretto): 1000 0011
+mantissa: 0001 0001 0000000000.. --> 1.00010001 x esponente
+
+converto l'esponente:
+10000011 = 128 + 2 + 1 = 131
+lo correggo:
+esponente = 131 - 127 = 4
+
+scalo il mio numero di 4 posizioni a destra
+1.00010001 x esponente = 1000.10001 *10001.0001
+
+calcolo la parte intera
+ int = 1000_2 = 8_10 *17_10
+
+errato il successivo
+**************************************
+calcolo la parte decimale 
+ dec = 10001_2 = 1/2 + 1/32 = 0.5 + 0.03125 = 0.53125 
+1/32 = 0.5/16 = 0.25/8 = 0.125/4 = 0.0625/2 = 0.03125
+
+A_10 = 8.53125
+***************************************
+
+########################################################################################
+
+
+#define BASE 10
+int cifreDivisori(int val)
+{
+  int num;
+  int cont;
+  int cifra;
+
+  cont = 0;
+  if(val < 0)
+    val = -val;
+  num = val;
+  while(num > 0){
+    cifra = num % BASE;
+    if(val % cifra == 0)
+      cont++;
+    num = num / BASE;
+  }
+  return 0;
+}
+
+
+########################################################################################
+
+#define MAX_LEN 30
+#define FO ./primi.txt
+int main (int argc, char * argv[])
+{
+  char nome[MAX_LEN + 1];
+  FILE * fi, * fo;
+  int num, nprimi;
+
+  scanf("%30s", nome);
+
+  if (fi = fopen(nome, "r")){
+    if (fo = fopen(FO, "w")){
+      while(fscanf(fi, "%d", &num) != EOF){
+        nprimi = contaPrimiMinori(num);
+        fprintf(fo, "%d %d\n", num, nprimi);
+      }
+      fclose(fo);
+    } //non ho messo l'else
+  fclose(fi);
+  } //non ho messo l'else
+}
+
+int contaPrimiMinori(int val)
+{
+  int cont, i, j;
+
+  if(val == 1)
+    return 1;
+  if(val == 2)
+    return 2;
+  cont = 2;
+  for(i = 1; i <= val; i = i + 2){
+    half = i / 2;
+    for(j = 1; j < half; j = j + 2){
+      if(i % j != 0)
+        cont++;
+    } 
+  }
+  return cont;
+}
+
+int main (int argc, char * argv[])
+{
+  /*ipotizzo una lunghezza massima di MAX_LEN caratteri*/
+  FILE * fi, *fo;
+  char nomein[MAX_LEN], nomeout[MIN_LEN];
+  int i;
+  int num;
+
+  if(argc == 3){
+    for(i = 0; *(argv[1] + i) != '\0'; i++)
+      nomein[i] = *(argv[1] + i);
+    for(i = 0; *(argv[2] + i) != '\0'; i++)
+      nomeout[i] = *(argv[2] + i);
+  }
+  
+  return 0;
+}
+
+####################################################################
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+list_t * delfromlist (list_t * h, x){
+  list_t * p1, *p2;
+  int num, cont;
+  
+  p1 = h;
+  while (p1) {
+    cont = 1; /*di sicuro vi è un elemento con il valore p1->info*/
+    p2 = p1->next; /*p1 non può essere NULL*/
+    while (p2) { /*scorro la lista per ogni elemento*/
+      if(p2->info == p1-->info) /*conto gli elementi della lista uguali a p1->info*/
+        cont++;
+      p2 = p2->next;
+    }
+    if (cont >= x) { /*cancello dalla lista p1->info se compare x volte*/
+      if (p1 == h) {
+        h = delete(h, p1->info);
+        p1 = h;
+      } else {
+        h = delete(h, p1->info);
+        p1 = p1->next;
+      } 
+      p1 = p1->next;
+    }
+  }
+  return h;
+}

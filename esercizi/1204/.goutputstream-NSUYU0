@@ -1,0 +1,3 @@
+/*sottoprogramma distanza, ricevuti in ingresso due array di interi di egual lunghezza, un array di pesi, della stessa lunghezza, e qualsiasi altro parametro, calcola e trasmette la distanza euclidea e la distanza euclidea pesata. le formule per il calcolo sono;
+d=rad(sum(i=1,n)(|Ui-Vi|^2))
+d=rad(sum(i=1,n)(Pi^(|Ui-Vi|^2)))

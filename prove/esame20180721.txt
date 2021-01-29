@@ -1,0 +1,170 @@
+A = -15_10
+B = +15_16
+
+A_2MS = 11111
+
+|A| = 1111
+
+15 1
+7 1
+3 1
+1 1
+0 0
+
+|A|_2C2 = 01111
+A_2C2 = 10001
+
+B_2MS = 00010101, riduzione a numero minimo = 010101
+
+1 = 0001
+5 = 0101
+
+B_2C2 = 010101
+
+estendo A in segno per l' aritmetica A_2C2 = 110001
+
+A + B =
+ 11   1
+  110001+
+  010101
+  ------
+  000110
+
+non si verifica overflow (segni discordi)
+
+-B = 101011
+
+A - B = A + (-B)=
+ 1   11
+  110001+
+  101011
+  ------
+  011100
+
+si verifica overflow: operandi negativi e risultato positivo
+
+A + B = 000110 no overflow
+
+A - B = 011100 overflow
+
+typedef struct elem_t {
+  int giorno;
+  int mese;
+  int anno;
+} list_t;
+
+void rot(char voc[], int n)
+{
+  int len1, i, j;
+
+  for (i = 0; voc[i] != '\0'; i++)
+    ;
+  len1 = i - 1;
+  
+  for(i = 0; i < n; i++){
+    last = voc[len1];
+    for(j = len1; j > 0; j--)  
+      voc[j] = voc[j - 1];
+    voc[0] = last;
+  }
+  return NULL;
+}
+
+int main (int argc, char * argv[])
+{
+  char * stringa;
+  int rotazioni;
+
+  if(argc == 3){
+    stringa = *argv[1];
+    rotazioni = *argv[2];
+    rot (stringa, rotazioni);
+  } else {
+    printf("%s", stringa)
+  }
+
+  return 0;
+}
+
+int indexMax (int mat[][NCOL], int nrow)
+{
+  int maxdiff, diff, i, j, k, maxindex;
+  
+  maxdiff = 0; /*non può essere minore di zero*/
+  maxindex = 0; /* lo inizializzo, casomai la matrice avesse tutti valori uguali nelle singole colonne*/
+  for (j = 0; j < NCOL; j++)
+    for (i = 0; i < (nrow - 1); i++)
+      for (k = i + 1; k < nrow; k++) {
+        diff = abs(mat[i][j] - mat[k][j]);
+        if (diff > maxdiff){
+          maxindex = j;
+          maxdiff = diff;
+        }
+  return maxindex;
+}
+
+
+#define MAX_LEN 80
+int main (int argc, char* argv)
+{
+  char nome1[MAX_LEN], nome 2[MAX_LEN], nome3[MAXLEN];
+  int val;
+
+  scanf("%s %s %s %d", nome1, nome2, nome3, &val);
+  
+  if(!val)
+    concatena(nome1, nome2, nome3);
+  else
+    concatena(nome2, nome1, nome2);
+  
+  return 0;
+}
+
+void concatena(name1, name2, nameout)
+{
+  FILE * f1, * f2, * fo;
+  char c;
+
+  if(f1 = fopen(name1, "r"){
+    if(f2 = fopen(name2, "r"){
+      if(fo = fopen(nameout, "w"){
+        while(fscanf(f1, "%c", &c)
+          fprintf(fo "%c", c);
+        while(fscanf(f2, "%c", &c)
+          fprintf(fo "%c", c);
+        fclose(fo);
+      } else {
+        printf("errore nella scrittura del file");
+      }
+      fclose(f2);
+    } else {
+      printf("errore nell'apertura del file: %s, name1);
+    }
+    fclose(f1);
+  } else {
+    printf("errore nell'apertura del file: %s, name2);
+  }
+
+  return NULL;
+}
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+list_t * selectitems(list_t * h, int min, int max)
+{
+  list_t * p;
+  list_t * new;
+  
+  new = NULL;
+  p = h;
+  while (p != NULL){
+    if(p->info < min || p->info > max)
+      new = insertdown(new, p->info);
+    p = p->next;
+  }
+
+  return new;
+}

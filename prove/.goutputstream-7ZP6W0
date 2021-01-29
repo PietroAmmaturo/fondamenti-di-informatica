@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+void genera(char s[], char);
+
+int main(int argc, char * argv[])
+{
+  if(argc == 2){
+    genera(argv[1], '0');
+  } else {
+    printf("errore, si aspetta un valore da riga di comando");
+  }
+  return 0;
+}
+
+
+
+void genera(char s[], char value)
+{
+  int i;
+  for (i = 0; s[i] != '\0'; i++) {
+    if(s[i] == 'x') {
+      genera(s, '0');
+      genera(s, '1');
+      printf("%c", value);
+    } else {
+      printf("%c", s[i]);
+    }
+  }
+  return void;
+}
+
+
+
+
+

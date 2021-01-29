@@ -9,10 +9,12 @@ int main(int argc, char*argv[]) {
 	int i, j;
 	float mat[N][N], tmat[N][N];
 
-	for(i = 0; i < N; i++)
+/* acquisizione */
+	for(i = 0; i < N; i++) 
 		for(j = 0; j < N; j++)
 			scanf("%f", &mat[j][i]);
 
+/*scambio e stampa*/
 	for(i = 0; i < N; i++){
 		for(j = 0; j < N; j++){
 			tmat[j][i] = mat[i][j];

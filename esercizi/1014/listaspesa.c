@@ -11,6 +11,8 @@ il numero di prodotti acquistati.
 Il programma visualizza al termine:
 numero di pezzi: costo totale
 VARIANTE: Cosa cambia nella risoluzione del problema se i valori in ingresso sono strettamente positivi?*/
+
+/*nella variante cambia che se l'importo raggiunge zero, si può subito uscire dal ciclo*/
 int main(int argc, char*argv[]) {
 	
 	int i, termine, npezzi, nprod;
@@ -33,6 +35,17 @@ int main(int argc, char*argv[]) {
 			}
 	}
 	
+	/* variante */
+	/*
+	npezzi = 0;
+	imp = impmax;
+	for(i = 0; i < nprod && imp > 0; i++){
+			if(imp >= prezz[i]){
+				imp = imp - prezz[i];
+				npezzi++;
+			}
+	}
+	*/
 	tot = impmax - imp;
 	
 	printf("%d : %f", npezzi, tot);

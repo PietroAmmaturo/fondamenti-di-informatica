@@ -14,6 +14,7 @@ struct occ_float_s{
 	float valore;
 	int cont;
 }
+
 struct studente_s{
 	char nome[LMAX+1], cognome[LMAX+1];
 	char matricola[LMAT+1];

@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char * crop(char frase[], char ch);
+
+int main(int argc, char * argv[])
+{
+  printf("%s", argv[1]);
+  printf("%c", *argv[2]);
+  char * cropped;
+  if(argc == 3){
+    cropped = crop(argv[1], *argv[2]);
+    printf("%s\n", cropped);
+  } else
+    printf("si aspettano 2 valori da riga di comando");
+  return 0;
+}
+
+char * crop(char frase[], char ch)
+{
+  int indexfirst, indexsecond;
+  int len;
+  int i, cont;
+  char * new;
+  
+  printf("%s", frase);
+  cont = 0;
+  for(i = 0; frase[i] != '\0' && cont < 2; i++)
+    if(frase[i] == ch){
+      cont++;
+      if (cont == 1)
+        indexfirst = i;
+      else
+        indexsecond = i;
+    }
+
+  if (cont < 2){
+    printf("err");
+    return NULL;
+    }
+    
+  len = indexsecond - indexfirst + 2;
+  if (new = (char*)malloc(sizeof(char) * len)){
+    *(new + len - 1) = '\0';
+    for(i = 0; *(new + i) != '\0'; i++){
+      *(new + i) = frase[indexfirst + i];
+      printf("\n%c", frase[indexfirst + i]);
+    }
+  } else 
+      printf("errore allocazione memoria per %d char", len);
+
+  printf("%s", new);
+  return new;
+}
+
+
+

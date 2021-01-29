@@ -10,7 +10,7 @@ int main(int argc, char*argv[]) {
 	
 	for(i = 0; i < N; i++)
 		scanf("%d", &arr[i]);
-		
+	
 	scanf("%d", &s);
 	
 	ris = 0;

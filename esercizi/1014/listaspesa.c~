@@ -1,6 +1,5 @@
 #include <stdio.h>
 #define NMAXPROD 50
-#define TERMINE -1.0
 /*Si scriva un programma che acquisiti al massimo 50 numeri reali positivi o nulli che rappresentano il prezzo
 di vendita di articoli in un negozio (in ordine di importanza di acquisto), e l’importo massimo che si `e
 disposti a spendere, determini il massimo numero di prodotti acquistabili con il denaro indicato ed il costo
@@ -18,7 +17,7 @@ int main(int argc, char*argv[]) {
 	float prezz[NMAXPROD], impmax, prezzo, imp, tot;
 	
 	scanf("%f", &prezzo);
-	for(nprod = 0; nprod < NMAXPROD && (prezzo != (float)TERMINE); nprod++){
+	for(nprod = 0; nprod < NMAXPROD && prezzo >= 0; nprod++){
 		prezz[i] = prezzo;
 		scanf("%f", &prezzo);
 		}

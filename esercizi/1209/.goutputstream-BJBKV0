@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_LEN 100
+#define END_STRING '\0'
+#define END_WORD ' '
+int main(int argc, char * argv[])
+{
+	char * filename = argv[0];
+	FILE * fi;
+	int numrig;
+	int i;
+	int totcar;
+	int numcar;
+	int medcar;
+	int maxcar;
+	char riga[MAX_LEN];
+	char maxriga[MAX_LEN];
+	
+	printf("inizio\n");
+	if (argv[0] != NULL){
+		printf("acqu ok\n");
+		fi = fopen(filename, "r");
+		if(fi){
+			printf("file ok\n");
+			fgets(maxriga, MAX_LEN, fi);
+			if(!feof(fi)){
+				printf("prima gets ok\n");
+				/*appena letta la prima riga*/
+				numrig = 1;
+				/*contacaratteri in questo caso sono il massimo*/
+				maxcar = 0;
+				for(i = 0; maxriga[i] != END_STRING; i++)
+					if(maxriga[i] != END_WORD)
+						maxcar++;
+				/*caratteri totali*/
+				totcar = maxcar;
+				fgets(riga, MAX_LEN, fi);
+			}
+			while(!feof(fi)){
+				printf("%s\n", riga);
+				printf("gets ok\n");
+				/*conta righe*/
+				numrig++;
+				/*contacaratteri*/
+				numcar = 0;
+				for(i = 0; riga[i] != END_STRING; i++)
+					if(riga[i] != END_WORD)
+						numcar++;
+				/*caratteri totali*/
+				totcar += numcar;
+				/*maxcaratteri e riga più lunga*/
+				if (numcar > maxcar){
+					maxcar = numcar;
+					/*riga più lunga*/
+					for(i = 0; riga[i] != END_STRING; i++){
+						maxriga[i] = riga[i];
+					}
+				}
+				fgets(riga, MAX_LEN, fi);
+			}
+		} else {
+			printf("errore nell'apertura del file: %s", filename);
+		}
+		/*numero medio*/
+		medcar = totcar / numrig;
+		printf("%d\n%d\n%d %d\n%s\n",
+		numrig, totcar, maxcar, medcar, maxriga);
+	} else {
+			printf("errore nell'acquisizione da riga di comando");
+	}
+	return 0;
+}
