@@ -1,0 +1,142 @@
+A = +19_10
+B = -69_10
+
+|A| = 010011_2C2
+19 1
+09 1
+04 0
+02 0
+01 1
+00
+A = |A| =  010011_2C2
+
+|B| = 01000101_2C2
+69 1
+34 0
+17 1
+08 0
+04 0
+02 0
+01 1
+00
+B = -|B| = 10111011_2C2
+
+estendo in segno A = 00010011
+A + B
+............
+...11..11...
+..00010011+
+..10111011=
+..--------
+..11001100
+
+operandi discordi: non si verifica overflow
+
+-B = 01000101_2C2
+A + -B
+............
+......111...
+..00010011+
+..01000101=
+..--------
+..01011000
+
+operandi positivi e risultato positivo: non si verifica overflow
+
+##############################################################################################àà####
+
+#define MAXLEN 40
+int main(int argc, char* argv[])
+{
+  int num, max, minc, sum;
+  char nome[MAXLEN + 1];
+  FILE * fp;
+  float avg;
+
+  fp = fopen(nome, "r");
+  if (fp) {
+    if(fscanf(fp, "%d", &max) != EOF) {
+      sum = num;
+      cont = 1;
+      min = max;
+      while(fscanf(fp, "%d", &num) != EOF) {
+        sum += num;
+        cont++;
+        if(num > max)
+          max = num;
+        else if(num < min)
+          min = num;
+      }
+      avg = (float)sum / cont;
+      printf("%d %d %f", min, max, avg);
+    } else 
+      printf("file vuoto");
+  } else
+    printf("errore apertura file");
+  return 0;
+}
+
+#define MAXLEN_T 10
+#define MAXLEN_LN 30
+#define MAXLEN_FN 30
+#define MAXLEN_AF 50
+#define MAXLEN_CN 20
+
+typedef struct {
+  char title[MAXLEN_T + 1];
+  char lastname[MAXLEN_LN + 1];
+  char firstname[MAXLEN_FN + 1];
+  char affiliation[MAXLEN_AF + 1];
+  char country[MAXLEN_CN + 1];
+} attendee_t
+
+typedef struct elem_s{
+  char title[MAXLEN_T + 1];
+  char lastname[MAXLEN_LN + 1];
+  char firstname[MAXLEN_FN + 1];
+  char affiliation[MAXLEN_AF + 1];
+  char country[MAXLEN_CN + 1];
+  struct elem_s * next;
+} listattendee_t;
+
+int visualizzalista(listaattendee_t * h, char nation[])
+{
+  listaattendee_t * p;
+  
+  count = 0;
+  p = h;
+  while (p) {
+    if(strcmp(nation, p->country)) {
+      printf("%s %s %s %s %s\n" p->title, p->lastname,
+              p->firstname, p->affiliation, p->country);
+      count++;
+    }
+    p = p->next;
+  }
+  return cont;
+}
+
+int isanagramma(char s1[], char s2[])
+{
+  int cont, anagramma, i, j; /* utilizzo il minimo di memoria possibile, non vi sono array di contatori */
+  char c;
+  
+  anagramma = 1;
+  if(strlen[s1] == strlen[s2] && !strcmp(s1, s2) && anagramma) {
+    for(i = 0; s1[i] != '\0'; i++) {
+      c = s[i];
+      cont = 0;
+      for(j = 0; s1[j] != '\0'; j++) {
+        if(c == s1[j])
+          cont++;
+        if(c == s2[j])
+          cont--;
+      }
+      if(cont != 0)
+        anagramma = 0;
+    } 
+  } else
+    anagramma = 0;
+  return anagramma;
+}
+

@@ -1,0 +1,149 @@
+A = +15_10
+B = -16_10
+
+A = 1111_2 = 01111_2MS = 01111_2C2
+
+15 1
+07 1
+03 1
+01 1
+00
+
+|B| = 10000_2 = 010000_2MS = 010000_2C2
+
+B = -|B| = 110000_2C2
+
+16 0
+8 0
+4 0
+2 0
+1 1
+00
+
+estendo A im segno per l'algebra.
+A = 001111_2C2
+B = 110000_2C2
+A + B=
+........
+..001111+
+..110000=
+--------
+..111111
+
+operandi discordi, non si verifica overflow
+
+-B = |B| = 010000_2C2
+A - B = A + -B=
+........
+..001111+
+..010000=
+--------
+..011111
+
+operandi positivi, risultato positivo, non si verifica overflow
+
+char * reverse(char s[])
+{
+  int len, i;
+  char * new;
+  int lastindex;
+
+  len = strlen(s);
+  new = malloc(sizeof(char) * len + 1);
+  if(new) {
+    lastindex = len - 1;
+    for(i = 0; i < lastindex; i++)
+      *(new + i) = s[lastindex - i]; qwerty/ 
+  }
+  *(new + len) = '\0';
+  return new;
+}
+
+#define FILE_NAME DIC.TXT
+#define MAX_LEN 40
+int main(int argc, char * argv[])
+{
+  FILE * fp;
+  int trovato;
+  char vocabolo[MAX_LEN + 1];
+  char tmp[MAX_LEN + 1];
+  char * reverse;
+
+  fp = fopen(DIC.TXT, "r")
+  if(fp) {
+    scanf("%40s", vocabolo);
+    len = strlen(vocabolo);
+    reverse = reverse(vocabolo);
+    trovato = 0;
+    while(fscanf(fp, "%40s", tmp) != EOF && !trovato)
+      if(strncmp(reverse, tmp, strlen)
+        trovato = 1;
+    free(reverse);
+    printf("%d", trovato);
+    fclose(fp);
+  } else
+    printf("errore nell'apertura del file");
+  return 0;
+}
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+int sicontengono(list_t * head1, list_t * head2)
+{
+  int ris;
+  int len1, len2;
+  
+  len1 = listlen(head1);
+  len2 = listlen(head2);
+  if(len1 < len2)
+    ris = econtenuta(head1, head2);
+  else
+    ris = econtenuta(head2, head1);
+  return ris;
+}
+
+int econtenuta(list_t * h1, list_t * h2)
+{
+  list_t * p;
+  int trovato;
+
+  p = h1;
+  trovato = 1;
+  while(p && trovato) {
+    trovato = find(p->info, h2);
+    p = p->next;
+  }
+  return trovato;
+}
+
+int find(int val; list_t * h)
+{
+  int trovato;
+  list_t * p;
+
+  p = h;
+  trovato = 0;
+  while(p && !trovato) {
+    if(p->info == val)
+      trovato = 1;
+    p = p->next;
+  }
+  return trovato;
+}
+
+int listlen(list_t * h)
+{
+  list_t * p;
+  int len;
+  
+  len = 0;
+  p = h;
+  while (p){
+    len++;
+    p = p->next;
+  }
+  return len;
+}

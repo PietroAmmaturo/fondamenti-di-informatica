@@ -1,0 +1,279 @@
+A = -A1_16MS
+B = 101010001_2C2
+
+|A| = 010100001_2MS = 010100001_2C2
+A = 1010_2
+1 = 0001_2
+A = -|A| = 101011111_2C2
+
+A + B =
+.1.1.11111.
+...........
+..101011111+
+..101010001=
+..---------
+..010110000
+
+si verifica overflow: operandi negativi e risultato positivo
+
+-B = 010101111_2C2
+A - B = A + -B =
+.111111111.
+...........
+..101011111+
+..010101111=
+..---------
+..000001110
+
+non si verifica overflow: operandi discordi
+
+##############################################################
+
+#define BASE 10;
+int lefttprime(int n) 15
+{
+  int tmp, divisore, controllo, eprimotronc;
+
+  divisore = BASE;
+  controllo = n * BASE;
+  eprimo = 1;
+  while (divisore < controllo && eprimotronc) {
+    tmp = n % divisore;
+    eprimotronc = eprimo(tmp);
+    divisore = divisore * BASE;
+  }
+  return eprimotronc;
+}
+
+int eprimo(int num)
+{
+  int i, ris, half;
+
+  if (num == 1 || num == 2)
+    ris = 1;
+  else if (num % 2)
+    ris = 0;
+  else {
+    half = num / 2;
+    for (i = 3; i < half && ris; i = i + 2)
+      if (num % i)
+        ris = 0;
+  }
+  return 0;
+}
+
+###############################################
+
+int vetta(int arr[], dim) /*assumo che l'ultimo valore sia vetta*/
+{
+  int i, vetta;
+ 
+  vetta = 1;
+  for(i = 1; i < dim && vetta; i++) {
+    if(arr[0] < arr[i])
+      vetta = 0; 
+  }
+  dim--;
+  if (dim)
+    return vetta + vetta(&arr[1], dim);
+  else
+    return vetta;
+}
+
+
+
+
+
+#############################################
+typedef struct _d {
+  int year;
+  int month;
+  int day;
+} date_t;
+
+void primoedultimo(char nome[], date_t * primo, date_t * ultimo)
+{
+  FILE * fp;
+  date_t giorno, massimo, minimo;
+
+  fp = fopen(nome, "r");
+  if (fp) {
+    fscanf(fp, "%d", &massimo.year);
+    fscanf(fp, "%d", &massimo.month);
+    fscanf(fp, "%d", &massimo.day);
+    minimo.year = massimo.year;
+    minimo.month = massimo.month;
+    minimo.day = minimo.day;
+    while(fscanf(fp, "%d", &giorno.year) != EOF) {
+      fscanf(fp, "%d", &giorno.month);
+      fscanf(fp, "%d", &giorno.day);
+      
+      if (giorno.year > massimo.year)
+      {
+        massimo.year = giorno.year;
+        massimo.month = giorno.month;
+        massimo.day = giorno. day;
+      }
+      else if (giorno.year == massimo.year)
+      {
+        if (giorno.month > massimo.month)
+        {
+          massimo.year = giorno.year;
+          massimo.month = giorno.month;
+          massimo.day = giorno. day;
+        }
+        else if (giorno.month == massimo.month)
+        {
+          if (giorno.day > massimo.day)
+          {
+            massimo.year = giorno.year;
+            massimo.month = giorno.month;
+            massimo.day = giorno. day;
+          }
+        }
+      }
+      else if (giorno.year < minimo.year)
+      {
+        minimo.year = giorno.year;
+        minimo.month = giorno.month;
+        minimo.day = giorno. day;
+      }
+      else if (giorno.year == minimo.year)
+      {
+        if (giorno.month < minimo.month)
+        {
+          minimo.year = giorno.year;
+          minimo.month = giorno.month;
+          minimo.day = giorno. day;
+        }
+        else if (giorno.month == minimo.month)
+        {
+          if (giorno.day < minimo.day)
+          {
+            minimo.year = giorno.year;
+            minimo.month = giorno.month;
+            minimo.day = giorno. day;
+          }
+        }
+      }
+    }
+    fclose (fp);
+    primo->day = minimo.day;
+    primo->month = minimo.month;
+    primo->year = minimo.year;
+    ultimo->day = massimo.day;
+    ultimo->month = massimo.month;
+    ultimo->year = massimo.year;
+  } else {
+    printf("errore apertura file");
+  }
+}
+
+############################################################################
+
+int main(int argc, char * argv[])
+{
+  data_t first, last;
+
+  if (argc == 2) {
+    primoedultimo(argv[1], &first, &last);
+    printf("periodo dal %d-%d-%d al %d-%d-%d",
+            first.day, first.month, first.year,
+            last.day, last.month, last.year);
+  } else
+    printf("si aspetta un valore da riga di comando");
+
+  return 0;
+}
+
+##########################################################################
+
+list_t * unioneliste(list_t * h1, list_t * h2)
+{
+  prendo uno, vedo se diverso, lo pusho, prendo un altro
+  vedo se è diverso, se si, lo pusho, repeat
+
+  list_t * newh;
+  newh = NULL;
+  
+  p1 = h1;
+  p2 = h2;
+  if(p1) {
+    push(newh, p1->info);
+    p1 = p1->next;
+  } else if (p2) {
+    push(newh, p2->info);
+    p2 = p2->next;
+  }
+  while(p2 && p1) {
+    if(p1->info != newh->info) {
+      push(newh, p1->info);
+    }
+    if(p2->info != newh->info) {
+      push(newh, p2->info);
+    }
+    p1 = p1->next;
+    p2 = p2->next;
+  }
+  while(p1) {
+    if(p1->info != newh->info) {
+      push(newh, p1->info);
+    }
+    p1 = p1->next;
+  }
+  while (p2) {
+    if(p2->info != newh->info) {
+      push(newh, p2->info);
+    }
+    p2 = p2->next;
+  }
+
+  return newh;
+}
+
+list_t * push(list_t * h, val)
+{
+  list_t * new;
+  
+  new = malloc(sizeof(list_t));
+  if(new) {
+    new->info = val;
+    new->next = h;
+    h = new; 
+  }
+  return h;
+}
+
+secondo il modello di Von Neumann:
+Il bus di sistema è il componente che permette lo scambio di informazioni
+tra memoria (RAM), CPU , hard disk e dispositivi (I/O).
+L'architettura del bus di sistema si articola su 3 livelli: ADDR, DATA, CTRL
+ADDR: qui vengono passati gli indirizzi di memoria;
+DATA: qui vengono passati i veri e propri dati;
+CTRL: qui vengono passati i valori di controllo;
+Un solo componente per volta può scrivere/leggere dal bus.
+LA CPU (in particolare la control unit) gestisce i vari componenti attraverso
+il bus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

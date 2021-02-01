@@ -1,0 +1,122 @@
+A = -28
+B = -11
+
+|A| = 011100_2C2
+28 0
+14 0
+07 1
+03 1
+01 1
+00
+
+|B| = 01011_2C2
+11 1
+05 1
+02 0
+01 1
+00
+
+A = -|A| = 100100_2C2
+B = - |B| = 10101_2C2
+
+per l'algebra estendo B in segno 
+B = 110101
+
+A + B
+.1..1.....
+..........
+..100100+
+..110101=
+..------
+..001001
+
+si verifica overflow: operandi negativi, risultato positivo
+
+
+-B = |B| = 01011 --> esteso --> 001011
+A - B = A + -B
+
+.........
+.........
+..100100+
+..001011=
+..------
+..101111
+
+operandi discordi, non si verifica overflow
+
+#define MAX_LEN 26
+#define NAME_LEN 50
+#define START 'a'
+int main(int argc, char* argv[])
+{
+  FILE * fp;
+  int s[MAX_LEN + 1];
+  int cont[MAX_LEN + 1];
+  int name[NAME_LEN + 1];
+  int * cont;
+  char c;
+
+  scanf("%s %s", s, name); 
+  len = strlen(s);
+  for(i = 0; i < MAX_LEN; i++)
+    cont[i] = 0;
+  fp = fopen(name, "r") {
+    while(fscanf(fp, "%c", &c) != EOF){
+      cont[c -START]++;
+    }
+    fclose(fp);
+    for(i = 0; s[i] != '\0'; i++)
+      printf("%c: %d  ", s[i], cont[c - START]);
+  } else
+    printf("errore apertura file");
+  return 0;
+}
+
+typedef struct elem_s {
+  int num;
+  int den;
+  struct elem_s * next;
+} fract_t;
+
+int contasoglia(fract_t * h, fract_t soglia)
+{
+  fract_t * p;
+  float sogliaf;
+  int cont;
+
+  cont = 0;
+  sogliaf = (float)(soglia->num) / soglia->den;
+  p = h;
+  while (p) {
+    if(sogliaf > (float)(p->num) / p->den)
+      cont++;
+    p = p->next;
+  }
+  return cont;
+}
+
+int fractcmp(fract_t val1, fract_t val2)
+{
+  int ris;
+
+  val1f = (float)(val1->num) / val1->den;
+  val2f = (float)(val2->num) / val2->den;
+  
+  if(val1f < val2f)
+    ris = -1;
+  else if(val1f > val2f)
+    ris = 1;
+  else
+    ris = 0;
+  return ris;
+}
+
+fract_t * create(int num, int den)
+{
+  if(new = malloc(sizeof(fract_t))){
+    new->num = num;
+    new->den = den;
+  }
+  return new;
+}

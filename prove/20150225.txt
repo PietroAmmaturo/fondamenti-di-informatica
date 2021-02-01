@@ -1,0 +1,139 @@
+A = -73_10MS
+B = -17_16MS
+
+|A| = 01001011_2C2
+73 1
+36 1
+18 0
+09 1
+04 0
+02 0
+01 1
+A = - |A| = 10110101_2C2
+
+|B| = 010111_2C2
+1 = 0001
+7 = 0111
+B = -|B| = 101001_2C2
+
+estendo in segno B = 11101001_2C2
+
+A + B
+............
+.111........
+..10110101+
+..11101001=
+..--------
+..10011110
+
+operandi negativi e risultato negativo: non si verifica overflow
+
+
+-B = |B| = 00010111_2C2
+A + -B
+............
+...11.111...
+..10110101+
+..00010111=
+..--------
+..11001100
+
+operandi discordi: non si verifia overflow
+
+
+#define STOP 0.0
+int main(int argc, char * argv[])
+{
+  float cont, sum, max, min, avg;
+  float tmp;
+
+  sum = 0;
+  cont = 0;
+  scanf("%f", &tmp);
+  while(tmp != STOP) {
+    sum += tmp;
+    cont++;
+    if(tmp > max)
+      max = tmp;
+    else if(tmp < min)
+      min = tmp;  
+    scanf("%f", &tmp);
+  }
+  avg = sum / cont;
+  printf("%f %f %f", max, min, avg);
+  return 0;
+}
+
+char * strcpy(char src[])
+{
+  int i, len;
+  char * ris;
+
+  for(i = 0; src[i] != '\0'; i++)
+    len++;
+  if(ris = malloc(sizeof(char) * (len + 1))) {
+    for(i = 0; i <= len; i++)
+      *(new + i) = src[i];
+  } else
+    printf("malloc error");
+ return ris;
+}
+
+void caratteriuguali(char nome1[], char nome2[])
+{
+  FILE * fp1, fp2;
+  int contug;
+  char c1, c2;
+
+  if(fp1 = fopen(nome1, "r")) {
+    if(fp2 = fopen(nome2, "r")) {
+      contug = 0;
+      while(fscanf(fp1, "%c", c1) != EOF && fscanf(fp2, "%c", c2) != EOF)
+        if(c1 == c2)
+          contug++;
+      if(feof(fp1) && feof(fp2))
+        printf("---")
+      else if(feof(fp1))
+        printf("%s", nome1);
+      else if(feof(fp2))
+        printf("%s", nome1);
+      printf("%d", contug");
+      fclose(fp2);
+    } else
+      printf("errore apertura file %s", nome2);
+    fclose(fp1);
+  } else 
+    printf("errore apertura file %s", nome1);
+  return 0;
+}
+
+int beforen(list_t * h, int n)
+{
+  if(h = NULL) {
+    printf("not found");
+  } else if(h->info != n) {
+    return beforen(h->next, n) + 1;
+  }
+  return 0;
+}
+
+void visualizzaMolecola(molecola_t * h)
+{
+  int natomi;
+  char tmp[DIM_SYM + 1];
+
+  printf("%s", h->nome);
+  natomi = sizeof(molecola->atomi) / sizeof(elemChimico_t);
+  cont = 1;
+  tmp = *(atomi).simbolo;
+  for(i = 1; i < natomi; i++) {
+    if(strncmp(tmp, *(atomi + i).simbolo, DIM_SYM))
+      cont++;
+    else {
+      cont = 1;
+      printf("%s_%d", tmp, cont);
+    }
+    tmp = *(atomi + i).simbolo;
+  }
+  printf("%s_%d", tmp, cont);
+}

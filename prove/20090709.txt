@@ -1,0 +1,108 @@
+A = -45_10
+B = +12_10
+
+|A| = 0101101 _2C2
+45 1
+22 0
+11 1
+05 1
+02 0
+01 1
+0
+A = -|A| = 1010011_2C2
+
+|B| = 01100_2C2
+12 0
+06 0
+03 1
+01 1
+00
+B = |B| = 01100_2C2
+
+per l'algebra
+estendo in segno B = 0001100_2C2
+..........
+..........
+..1010011+
+..0001100=
+..-------
+..1011111
+
+non si verifica overflow: operandi discordi
+
+-B = 1110100
+A + -B
+..........
+.111......
+..1010011+
+..1110100=
+..-------
+..1000111
+
+non si verifica overflow: operandi negativi e risultato negativo
+
+####################################################################à
+
+void vissep(char stringa[], char sep)
+{
+  int i;
+-
+  for(i = 0; stringa[i] != '\0'; i++)
+    if(stringa[i] == sep)
+      printf("\n");
+    else
+      printf("%c", s[i]);
+}
+
+################################################################
+
+list_t * listamaggiore(int arr[], int dim, int soglia)
+{
+  list_t * h, *new;
+  h = NULL;
+
+  for(i = 0; i < dim && !h; i++)
+    if(arr[i] > soglia)
+      if(new = malloc(sizeof(list_t))){
+        h = new;
+        new->info = arr[i];
+        new->next = NULL;
+      }
+  p = h;
+  for(i = 0; i < dim; i++)
+    if(arr[i] > soglia)
+      if(new = malloc(sizeof(list_t))){
+        p->next = new;
+        new->info = arr[i];
+        new->next = NULL;
+        p = p->next;
+      }
+  return h;
+}
+
+#################################################################
+
+int checkfile(char nome[])
+{
+  fp = fopen(nome, "r");
+  if (fp) {
+    ris = 1;
+    fclose (fp);
+  } else {
+    fp = fopen(nome, "w");
+    if(fp) {
+      ris = 0;
+      fclose (fp)
+    } else {
+      ris = 1;
+    }
+  }
+  return ris;
+}
+
+
+
+
+
+
+.

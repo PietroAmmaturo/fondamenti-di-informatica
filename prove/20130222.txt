@@ -1,0 +1,181 @@
+A = -35_16
+B = +11_10
+
+|A| = 0110101_2C2
+3 = 0011
+5 = 0101
+A = -|A| = 1001011-2C2
+
+|B| = 01011_2C2
+11 1
+05 1
+02 0
+01 1
+00
+B = |B|
+
+estendo in segno B = 0001011_2C2 
+A + B
+..........
+....1.11..
+..1001011+
+..0001011=
+..-------
+..1010110
+
+non si verifica overflow : operandi discordi
+
+-B = 1110101
+A - B = A + -B
+..........
+.1111111..
+..1001011+
+..1110101=
+..-------
+..1000000
+
+non si verifica overflow: risultato negativo ed operandi negativi
+
+#define MAXLEN 13
+#define START '0'
+int main(int argc, char * argv[])
+{
+  char stringa[MAXLEN + 1];
+  int i, somma, multiplo, ris;
+
+  len = MAXLEN - 1;
+  somma = stringa[0] - START;
+  for(i = 2; i < len; i = i + 2) {
+    somma += stringa[i] - START;
+  }
+  for(i = 1; i < len; i = i + 2) {
+    somma += (stringa[i] - START) * 3;
+  }
+  multiplo = 1;
+  while(multiplo < somma) {
+    multiplo *= multiplo;
+  }
+  ris = multiplo - somma;
+  if(ris == (int)(stringa[MAXLEN - 1] - START))
+    printf("codice corretto");
+  else
+    printf("codice scorretto");
+  return 0;
+}
+
+typedef struct elem_s {
+  int first;
+  int second;
+  struct elem_s * next;
+} primi_adiacenti_t;
+
+primi_adiacenti_t * primiadiacenti(int n)
+{
+  primi_adiacenti_t * h;
+  h = NULL;
+  int cont, num;
+
+  cont = 0;
+  num = 3;
+  while(cont < n) {
+    if(isprime(num) && isprime(num + 2)) {
+      h = append(h, num, num + 2);
+      cont++;
+    }
+  }
+  return h;
+}
+
+int isprime (int val)
+{
+  int i;
+  int nondiv;
+ 
+  nondiv = 1
+  for (i = 3; i < val && nondiv; i = i + 2)
+    if (val % i)
+      nondiv = 0;
+  return nondiv;
+}
+
+primi_adiacenti_t * append (primi_adiacenti_t * h,int val1, int val2)
+{
+  primi_adiacenti_t * p;
+  
+  if(new = malloc(sizeof(primi_adiacenti_t))) {
+    new->first = val1;
+    new->second = val2;
+    if (h) {
+      p = h;
+      while (p->next) {
+        p = p->next;
+      }
+      p->next = new;
+    } else {
+      h = new;
+    }
+  } else
+    printf("errore malloc");
+  return h;
+}
+
+int fixarray(int arr[], int n, int dim)
+{
+  int ris, i;
+  if(dim % n) {
+    len = dim / n;
+    while (n) {
+      for(i = 0; i < len; i++) {
+        arr[i] = n;
+      }
+      n--;
+    }
+    ris = 1;
+  } else
+    ris = 0;
+  return ris;
+}
+
+######################################################################
+
+
+#define MAXLENN 20
+#define MAXLENS 30
+
+void checkstelle(char nome[], int n, int * uguale, int * superiore);
+
+int main(int argc, char* argv[])
+{
+  int nug, nsup;
+  checkstelle("./alberghi.txt", 3, &nug, &nsup);
+  return 0;
+}
+
+
+
+void checkstelle(char nome[], int n, int * uguale, int * superiore)
+{
+  FILE * fp;
+  int contug, contsup;
+  char nome[MAXLENN + 1], servizio[MAXLENS + 1];
+  int stelle, servizi;
+
+  if(fp = fopen(nome, "r")){
+    contug = 0;
+    contsup = 0;
+    while(fscanf("%s %d %d", nome, stelle, servizi) == 3) {
+      if(stelle > n)
+        contsup++;
+      else if (stelle == n)
+        contug++;
+      while(servizi) {
+        fscanf("%s", servizio);
+        servizi--;
+      }
+    }
+    fclose(fp);
+  } else
+    printf("errore apertura file"):
+  *uguale = contug;
+  *superiore = contsup;
+}

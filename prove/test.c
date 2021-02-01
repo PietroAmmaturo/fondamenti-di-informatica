@@ -2,33 +2,41 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define BASE 10
+#define MAXLEN 30
 
-int cifraMaggiore(int val);
+int isanagramma(char [], char []);
 
-int main (int argc, char*argv[])
+int main(int argc, char * argv[])
 {
-  int i;
-  int num;
-  int a;
-  
-  num = 0;
-  for(i = 0; *(argv[1] + i) != '\0'; i++){
-    num += *(argv[1] + i);
-    num = num * BASE;
-   }
-  printf("%d", cifraMaggiore(num));
+  int ris;
+  ris = isanagramma("lago", "goal");
+  printf("%d", ris);
   return 0;
 }
 
-
-int cifraMaggiore(int val)
+int isanagramma(char s1[], char s2[])
 {
-  int cifra, max;
-  if (val)
-    max = cifraMaggiore(val/BASE);
-  cifra = val % BASE;
-  if (cifra > max)
-    max = cifra;
-  return max;
+  int cont, anagramma, i, j; /* utilizzo il minimo di memoria possibile, non vi sono array di contatori */
+  char c;
+  int samestr, samelen;
+  
+  samelen = strlen(s1) == strlen(s2);
+  samestr = !strcmp(s1, s2);
+  anagramma = 1;
+  if(samelen && !samestr && anagramma) {
+    for(i = 0; s1[i] != '\0'; i++) {
+      c = s1[i];
+      cont = 0;
+      for(j = 0; s1[j] != '\0'; j++) {
+        if(c == s1[j])
+          cont++;
+        if(c == s2[j])
+          cont--;
+      }
+      if(cont != 0)
+        anagramma = 0;
+    } 
+  } else
+    anagramma = 0;
+  return anagramma;
 }
