@@ -1,0 +1,125 @@
+A = -43_16
+B = 01001001_2C2
+
+|A| = 0101011_2C2
+43 1
+21 1
+10 0
+05 1
+02 0
+01 1
+00
+A = -|A| = 1010101_2C2
+
+A + B
+..........
+.11.....1..
+..11010101+
+..01001001=
+..-------
+..0011110
+
+non si verifica overflow: operandi discordi
+
+-B = 10110111_2C2
+A + -B
+..........
+.1111..11.
+..11010101+
+..10110111=
+..--------
+..10001100
+
+non si verifica overflow: operandi negativi e risultato negativo
+
+##########################################
+
+2.1
+2
+10.0
+7.2
+0
+
+##########################################
+
+#define SEP ' '
+void visualizzan(char nome[], int n)
+{
+  FILE * fp;
+  char c, cont;
+
+  if(fp = fopen(nome, "r")) {
+    cont = 0;
+    while(fscanf(fp, "%c", &c) != EOF && cont <= n) {
+      printf("%c", &c);
+      if(c == SEP)
+        cont++;
+    }
+    if (cont == n)
+      printf("...continua a leggere...");
+    fclose (fp);
+  } else
+    printf("errore apertura file");
+}
+
+#define START '0'
+#define SUB ' '
+#define TOSUB '-'
+void ottienidataetitolo(char s[], tdata * data, char * titolo)
+{
+  int tlen,exp, tmp, i, len;
+ 
+  len = strlen(s);
+  tlen = len - 11;
+  for(i = len; s[i] != '.'; i--) /*va tolto uno in più poichè altrimenti non considero il punto come parte dell'estensione*/
+    tlen--;
+  if(titolo = malloc(sizeof(char) * (tlen + 1))) {
+    exp = 1;
+    tmp = 0;
+    for(i = 0; i < 4; i++) {
+      tmp = tmp * exp;
+      tmp = tmp + s[i] - START;
+    }
+    data->anno = tmp;
+    exp = 1;
+    tmp = 0;
+    for(i = 5; i < 7; i++) {
+      tmp = tmp * exp;
+      tmp = tmp + s[i] - START;
+    }
+    data->mese = tmp;
+        exp = 1;
+    tmp = 0;
+    for(i = 8; i < 10; i++) {
+      tmp = tmp * exp;
+      tmp = tmp + s[i] - START;
+    }
+    data->giorno = tmp;
+    for(i = 11; i < tlen; i++) {
+      if(s[i] != TOSUB)
+        *(titolo + i) = s[i];
+      else
+        *(titolo + i) = SUB;
+    }
+    *(titolo + i) = '\0';
+  } else
+    printf("errore malloc");
+}
+
+void viewtime(int da, int a)
+{
+  int unixtime, d, h, m, s;
+  
+  unixtime = a - da;
+  
+  tmp = unixtime;
+  s = tmp % SECINMIN;
+  tmp = tmp / SECINMIN;
+  m = tmp % MINSINHOUR;
+  tmp = tmp / MINSINHOUR;
+  h = tmp % HOURSINDAY;
+  tmp = tmp / HOURSINDAY;
+  d = tmp;
+  
+  printf("%d giorni, %d ore, %d minuti e %d secondi, d, h, m, s);
+}

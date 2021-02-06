@@ -1,0 +1,117 @@
+A = -6A_16MS
+B = +63_10MS
+
+|A| = 01101010_2C2
+6 = 0110
+A = 1010
+A = 10010110_2C2
+
+|B| = 0111111_2C2
+63 1
+31 1
+15 1
+7 1
+3 1
+1 1
+B = 0111111_2C2
+
+estendo in segno B = 00111111_2C2
+A + B
+.................
+...11111.........
+..10010110+
+..00111111=
+..----------
+..11010111
+
+non si verifica overflow: operandi discordi
+
+-B = 11000001_2C2
+A + -B
+...........
+.1.........
+..10010110+
+..11000001=
+..--------
+..01010111
+
+si verifica overflow: operandi negativi e risultato positivo
+
+####################################################################
+
+#define START '0'
+#define NEG '-'
+int atoi(char val[]) /* si assume che nella stringa sia sempre presente il segno ed almeno una cifra */
+{
+  int i, segno, ris;
+  segno = val[0];
+  ris = val[1] - START;
+  for(i = 2, val[i] != '\0'; i++) {
+    ris = ris * 10;
+    ris += val[i] - START;
+  }
+  if(segno == NEG)
+    ris = -ris;
+  return ris;
+}
+
+int reverse (int val)
+{
+  int ris;
+
+  ris = val % 10;
+  val = val / 10;
+  while (val) {
+    ris *= 10;
+    ris += val % 10;
+    val /= 10;
+  }
+  return ris;
+}
+
+#define MAXLEN 80
+int main(int argc, char * argv[])
+{
+  char nome[MAXLEN + 1];
+  FILE * fp;
+  int cont, val;
+
+  cont = 0;
+  if(fp = fopen(nome, "r")) {
+    while(fscanf(fp, "%d", &val) ! EOF) {
+      cont++;
+    }
+    fclose (fp);
+  } else
+    printf("errore apertura file");
+  return cont;
+}
+
+list_t * aboveaverage(int num[], int dim)
+{
+  list_t * h = NULL;
+  int sum;
+  float avg;
+  
+  sum = num[0];
+  for(i = 1; i < dim; i++)
+    sum += num[i];
+  avg = (float)sum / dim;
+  for(i = 0; i < dim; i++)
+    if(num[i] > avg)
+      h = push(h, sum[i]);
+  return h;
+}
+
+list_t * push(list_t * h, int val)
+{
+  list_t * tmp;
+
+  if(tmp = malloc(sizeof(list_t))) {
+    tmp->info = val;
+    tmp->next = h;
+    h = tmp;
+  } else
+    printf("push: malloc error");
+  return h;
+}

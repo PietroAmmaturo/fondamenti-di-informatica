@@ -1,0 +1,164 @@
+void sequenze(int * mat, int nc, int nr, int * max, int * min, int * nseq).
+{
+  int i, j, exists, seqlen;
+
+  exists = 0;
+  for(i = 0; i < nr && !exists; i++)
+    for(j = 0; j < nc && !exists; j++)
+      if(*(mat + nc * i + j) == 'SEQMEM')
+        exists = 1;
+  if(exists) {
+    seqlen = 0;
+    *min = nc;
+    *max = 0;
+    *nseq = 0;
+    for(i = 0; i < nr; i++) {
+      for(j = 0; j < nc; j++) {
+        if(*(mat + nc * i + j) == 'SEQMEM')
+          seqlen++;
+        else if(seqlen > 0) {
+          *nseq++;
+          if(seqlen > *max)
+            *max = seqlen;
+          else if(deqlen < *min)
+            *min = seqlen;
+          seqlen = 0;
+        }
+      }
+      if(seqlen > 0) {
+        *nseq++;
+        if(seqlen > *max)
+          *max = seqlen;
+        else if(seqlen < *min)
+          *min = seqlen;
+        seqlen = 0;
+      }
+    }
+  } else {
+    *min = 0;
+    *max = 0;
+    *nseq = 0;
+  }
+}
+
+int ordinaarray(int * arr[], int dim)
+{
+  int i, j;
+  int nrep, min;
+
+  dim1 = dim - 1;
+  for(i = 0; i < dim1; i++) {
+    min = arr[i];
+    for(j = i + 1; j < dim; j++) {
+      if(arr[j] < min) {
+        min = arr[j];
+        minpos = j;
+      }
+    }
+    tmp = arr[i];
+    arr[i] = arr[minpos];
+    arr[minpos] = tmp;
+  }
+  nrep = 0;
+  for(i = 1; i < dim; i++) {
+    if(arr[i] == arr[i - 1])
+      nrep++;
+    else
+      arr[i - nrep] = arr[i];
+  }
+  return dim - nrep;
+}
+
+int main(int argc, char* argv[])
+{
+  int i, dim, arr[4] = {1, 1, 3, -5};
+
+  for(i = 0; i < dim; i++)
+    printf("%d", arr[i]);
+  dim = ordinarray(arr, dim);
+  for(i = 0; i < dim; i++)
+    printf("%d", arr[i]);
+  return 0;
+}
+
+#define CNTRL 5
+int main(int argc, char* argv[])
+{
+  int num;
+  do
+    scanf("%d", &num);
+  while (num < 1 || num > 20);
+
+  if(num == CNTRL) {
+        printf("          _  \n");
+        printf("         |  \n");
+        printf("        _  \n");
+        printf("       |  \n");
+        printf("      _  \n");
+        printf("     |  \n");
+        printf("    _  \n");
+        printf("   |  \n");
+        printf("  _  \n");
+        printf(" |  \n");
+  }
+  return 0;
+}
+
+#define FILENAME './voc.txt'
+void visualizzavocaboli(char s[])
+{
+  FILE * fp;
+  char voc[MAXLEN + 1];
+  int len;
+
+  if(fp = fopen(FILENAME, "r")) {
+    while(fscanf(fp, "%s", voc) != EOF){
+      len = strlen(voc);
+      if(strncmp(s, voc, len)) {
+        printf("%s ", voc);
+        printf("%s", s[len - 1]);
+      }
+    }
+    fclose (fp);
+  } else
+    printf("errore apertura file %s", FILENAME);
+}
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+list_t * justaboveaverage(int arr[], int dim)
+{
+  list_t * h;
+  int sum;
+  float avg;
+  
+  h = NULL;
+  for(i = 0; i < dim; i++)
+    sum += arr[i];
+  avg = (float)sum / dim;
+  i--;
+  while(i >= 0) {
+    if(arr[i] > avg) {
+      h = push(h, arr[i]);
+    }
+    i--;
+  }
+  return h;
+}
+
+list_t * push(list_t * h, int val)
+{
+  list_t * new;
+  
+  if(new = malloc(sizeof(list_t))) {
+    new->info = val;
+    new->next = h;
+    h = new;
+  } else
+    printf("push: errore malloc");
+  return h;
+}
+  

@@ -1,0 +1,134 @@
+int numerodominanti(int mat[][NC], int nr, nc)
+{
+  int i, j, ndom;
+
+  nr--;
+  nc--;
+  ndom = 0;
+  for(i = 0; i < nr; i++) {
+    for(j = 0; j < nc; j++) {
+      if(ismagg(mat[i][j], &mat[i + 1][j + 1], nr - i - 1, nc - j - 1))
+        ndom++;
+  return ndom;
+}
+
+int ismagg (int val, int m[][NC], int nr, int nc)
+{
+  int i, j, ismagg;
+
+  ismagg = 1;
+  for(i = 0; i < nr && ismagg, i++)
+    for(j = 0; j < nc && ismagg; j++)
+      if(val < mat[i][j])
+        ismagg = 0;
+  return ismagg;
+}
+
+int daa(int v[], int dim, int da, int a)
+{
+  int i, j, tmp, ris;
+
+  ris = 1;
+  if(dim != (a - da + 1))
+    ris = 0;
+  for (i = 0; i < dim && ris; i++)
+    if (v[i] > a || v[i] < da)
+      ris = 0;
+  for (i = 0; i < dim && ris; i++)
+    for (j = 0; j < dim && ris; j++)
+      if (j != i && v[j] == v[i])
+        ris = 0;
+  return ris;
+}
+
+void minmaxstr(char s[], char * min, char * max)
+{
+  int i, mx, mn;
+  
+  if (s[0] != '\0') {
+    mn = s[0]; 
+    mx = s[0];
+    for(i = 1; s[i] != '\0'; i++)
+      if (s[i] < min)
+        mn = s[i];
+      else if (s[i] > max)
+        mx = s[i];
+    *min = mn;
+    *max = mx;
+  } else
+    printf("errore: stringa vuota");
+}
+
+
+void minmaxstr(char s[], char * min, char * max)
+{
+  int i, mx, mn, len;
+  char * sl;
+  
+  len = strlen(s);
+  if(sl = malloc(sizeof(char) * (len + 1))) {
+    *(sl + len) = '\0';
+    for (i = 0; i < len; i++)
+      if (s[i] <= 'Z' && s[i] >= 'A')
+        *(sl + i) = s[i] - 'A' + 'a';
+      else
+        *(sl + i) = s[i];
+    if (*(sl) != '\0') {
+      mn = *(sl);
+      mx = *(sl);
+      for(i = 1; i < len; i++)
+        if (*(sl + i) < min)
+          mn = *(sl + i);
+        else if (*(sl + i) > max)
+          mx = *(sl + i);
+      *min = mn;
+      *max = mx;
+    } else
+      printf("errore: stringa vuota");
+    free(sl);
+  } else
+    printf("errore malloc");
+}
+
+int main (int argc, char * argv[])
+{
+  int min, max;
+  if(argc == 2) {
+    minmaxstr(argv[1], &min, &max);
+  } else
+    printf("si aspetta una stringa da riga di comando");
+  return 0;
+}
+
+list_t * ruotastringa(list_t * h, int verso)
+{
+  if (p && p->next) {
+    if (verso)
+      h = ruotadestra(h);
+    else
+      h = ruotasinistra(h);
+  }
+  return h;
+}
+
+list_t * ruotadestra(list_t * h)
+{
+  list_t * p;
+  
+  
+  p = h;
+  while (p->next->next) {
+    p = p->next;
+  }
+  push(p->next->info);
+  free(p->next);
+  p->next = NULL;
+  return h;
+}
+
+list_t * ruotasinistra(list_t * h)
+{
+  h = append(h->info);
+  h = pop(h);
+  return h;
+}

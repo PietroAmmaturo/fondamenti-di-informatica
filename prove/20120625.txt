@@ -1,0 +1,112 @@
+A = -66_16
+B = +111_10
+
+|A| = 01100110_2C2
+6 = 0110
+A = -|A| = 10011010_2C2
+
+B = |B| = 01101111_2C2
+111 1
+55 1
+27 1
+13 1
+06 0
+03 1
+01 1
+00
+
+A + B
+.............
+.1111111.....
+..10011010+
+..01101111=
+..--------
+..00001001
+
+operandi discordi: non si verifica overflow
+
+-B = 10010001_2C2
+A + -B
+..........
+.1..1.....
+..10011010+
+..10010001=
+..--------
+..00101011
+
+operandi negativi, risultato positivo: si verifica overflow
+
+################################################################
+
+void addtostring(int n, char s[], int i)
+{
+  int len, cont;
+
+  for(len = 0; s[len] != '\0'; len++)
+    ;
+  cont = 1;
+  while (n) {
+    s[len - cont] = n % BASE;
+    n = n / BASE;
+    cont++;
+  }
+}
+
+void stampan(char nome[], int n)
+{
+  char * str, c;
+  FILE * fp;
+  int i;
+
+  if(str = malloc(sizeof(char) * (n + 1))) {
+    if(fp = fopen(nome, "r") {
+      index = 0;
+      *(str + n) = '\0';
+      while(fscanf(fp, "%c", c) != EOF) {
+        found = 0;
+        for(i = 0; i < index; i++)
+          if(c == *(s + i))
+            found = 1;
+        if(!found)
+          *(s + index) = c;
+        index++;
+      }
+      printf("%s", str);
+      fclose(fp);
+    } else 
+      printf("errore apertura file");
+    free(str);
+  } else
+    printf("malloc error");
+}
+
+non occorre usare nessuna struttura dati, una malloc è sufficiente, poicheè si sa il numero massimo di caratteri distinti che occorre stampare(n)
+
+typedef struct elem_s * {
+  int n1;
+  int n2;
+  struct elem_s * next;
+} list_t;
+
+list_t * complementarian(int n) {
+  list_t * h;
+  h = NULL;
+
+  for(i = 1; i < n; i++)
+    push(h, n - i, i);
+  return h;
+}
+
+list_t * push(list_t * h, int val1, int val2)
+{
+  list_t * new;
+
+  if(new = malloc(sizeof(list_t))) {
+    tmp->n1 = val1;
+    tmp->n2 = val2;
+    tmp->next = h->next;
+    h->next = tmp;
+  } else
+    printf("push: malloc error");
+  return h;
+}

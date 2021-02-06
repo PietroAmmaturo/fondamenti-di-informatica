@@ -1,0 +1,198 @@
+A = +21_16
+B = -21_10
+
+|A| = 0100001_2C2
+2 = 0010
+1 = 0001
+A = |A|
+
+|B| = 010101_2C2
+21 1
+10 0
+05 1
+02 0
+01 1
+00
+B = -|B| = 101011_2C2
+
+estendo in segno B = 1101011_2C2
+A + B
+..........
+.11...11..
+..0100001+
+..1101011=
+..-------
+..0001100
+
+non si verifica overflow: operandi discordi
+
+-B = |B|
+A + -B
+.........
+.......1.
+..0100001+
+..0010101=
+..-------
+..0110110
+
+non si verifica overflow: operandi positivi e risultato positivo
+
+##############################################################################
+
+bit di segno: 1
+converto la parte intera
+227 1
+113 1
+056 0
+027 1
+013 1
+006 0
+003 1
+001 1
+000
+I = 11011011
+
+converto la parte decimale
+625 1
+250 0
+500 1
+000
+D = 101
+
+in virgola fissa: 11011011.101
+mantissa: 1011011101_2
+exp = 7_10 + 127_10 = 134_10 = 10000110_2
+135 0
+067 1
+033 1
+016 0
+008 0
+004 0
+002 0
+001 1
+
+risultato:
+
+1 10000110 10110111010000000000000
+
+####################################################################################
+
+#define SEP ':'
+#define SUB ' '
+#define TOSUB '='
+#define END '\0'
+author_t * (char dati[])
+{
+  int i, len, lenn, lens;
+  authot_t * new;
+
+  for(i = 0; dati[i] != END; i++)
+    if(dati[i] == SEP)
+      lens = i;
+  len = i;
+  lenn = len - lens;
+  if(new->nome = malloc(sizeof(char) * (lenn + 1)) &&
+     new->cognome = malloc(sizeof(char) * (lens + 1))) {
+     for(i = 0; i < lens; i++) {
+       if(dati[i] != TOSUB)
+         *(new->cognome + i) = dati[i];
+       else
+         *(new->cognome + i) = SUB;
+     }
+     *(new->cognome + lens) = END;
+     for(i = 0; i < lenn; i++) {
+       if(dati[i] != TOSUB)
+         *(new->nome + i) = dati[i + lens];
+       else
+         *(new->nome + i) = SUB;
+     }
+     *(new->nome + lene) = END;
+  } else
+    printf("errore malloc");
+  return new;
+}
+
+#define BASE 10
+#define MAXLEN 30
+int main (int argc, char * argv[])
+{
+  char nome[MAXLEN + 1];
+  FILE * fp;
+  int cont[BASE] = {0,0,0,0,0,0,0,0,0,0}, i, max, min, indexmax, indexmin, tot;
+  
+  scanf("%s", nome);
+  if(fp = fopen(nome, "r")) {
+    while(fscanf(fp, "%d", num) != EOF) {
+      cont[num]++;
+      max = cont[0];
+      min = cont[0];
+      tot = cont[0];
+      for(i = 1; i < BASE; i++) {
+        tot += cont[i];
+        if(cont[i] > max) {
+          max = cont[i];
+          indexmax = i;
+        } else if (cont[i] < min) {
+          min = cont[i];
+          indexmin = i;
+        }
+      }
+      printf(%d, %d, %d\n", indexmax, indexmin, tot);
+    }
+    fclose(fp);
+  } else
+    printf("errore apertura file");
+  return 0;
+}
+
+int main(int argc, char * argv[])
+{
+  int n;
+  char * s;
+
+  scanf("%d", &n);
+  if(s = malloc(sizeof(char) * (n + 1))) {
+    *(s + n) = '\0';
+    for(i = 0; i < n; i++)
+      *(s + i) = '0';
+    comb2(s);
+    free(s);
+  } else
+    printf("errore malloc");
+  return 0;
+}
+void comb2(s)
+{
+  if(*s != '\0') {
+    s[0] = '+';
+    comb2(s + 1);
+    s[0] = '-';
+    comb2(s + 1);
+  } else {
+    printf("%s", s);
+  }
+}
+
+int main(int argc, char * argv[])
+{
+  for(i = 0; i <= n; i++)
+    printf("%d", tobase(10, 2));
+  return 0;
+}
+
+#define BASE 10;
+int tobinary(int num, int base)
+{
+  int ris;
+  
+  while (num) {
+    ris += num % base;
+    ris = ris * BASE;
+    num = num / base;
+  }
+  return ris;
+}
+
+
+  
+  

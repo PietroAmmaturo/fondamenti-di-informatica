@@ -1,0 +1,148 @@
+
+
+int * conta(char info[], char cars[])
+{
+  int i, j, * cont;
+  int len;
+
+  len = strlen(cars);
+  if(cont = malloc(sizeof(char) * len)) {
+    for (i = 0; i < len; i++)
+      *(cont + i) = 0;
+    for (i = 0; info[i] != '\0'; i++) {
+      for (j = 0; j < len; j++)
+        if (cars[j] == info[i])
+          *(cont + j)++;
+    }
+  } else
+    printf("errore malloc");
+  return cont;
+}
+
+int main (int argc, char * argv[])
+{
+  int * ris, i;
+
+  if (argc == 3) {
+    *ris = conta(argv[1], argv[2]);
+    for (i = 0, argv[2] != '\0'; i++)
+      printf("%c %d\n", argv[i], *(ris + i));
+    free(ris);
+  } else
+    printf("si aspettano due stringhe da riga di comando");
+  return 0;
+}
+
+void applicafiltro(float image[][NC], float filtered[][NC], int nr, int nc)
+{
+  int i, j;
+  
+  /*corpo*/
+  for (i = 1; i < nr - 1; i++) {
+    for (j = 1; j < nc - 1; j++) {
+      filtered[i][j] = avg(&image[i - 1][j - 1], 3, 3);
+
+  /*colonne*/
+  for (i =1; i < nr - 1; i++)
+    filtered[i][0] = avg(&image[i - 1][0], 3, 2);
+  for (i =1; i < nr - 1; i++)
+    filtered[i][nc - 1] = avg(&image[i - 1][nc - 2], 3, 2);
+
+  /*righe*/
+  for (j =1; j < nc - 1; j++)
+    filtered[0][j] = avg(&image[0][j - 1], 2, 3);
+  for (j =1; j < nc - 1; j++)
+    filtered[nr - 1][j] = avg(&image[nr - 2][j - 1], 2, 3);
+
+  /*angoli*/
+  filtered[0][0] = avg(&image[0][0], 2, 2);
+  filtered[0][nc - 1] = avg(&image[0][nc - 2], 2, 2);
+  filtered[nr - 1][nc - 1] = avg(&image[nr - 2][nc - 2], 2, 2);
+  filtered[nr - 1][0] = avg(&image[nr - 2][0], 2, 2);
+}
+
+int avg(float mat[][NC], int nr, int nc)
+{
+  int i, j;
+  float sum;
+
+  sum = 0;
+  for (i = 0; i < nr; i++)
+    for (j = 0; j < nc; j++)
+      sum += mat[i][j];
+  return sum / 9;
+}
+
+#define MAXLENN 40
+#define MAXLENR 200
+#define EOP '.'
+#define EOL '\n'
+int main (int argc, char * argv[])
+{
+  char nome[MAXLENN + 1];
+  char rigo[MAXLENR + 1];
+  int nmaxcar, nmincar, nrighi, nfrasi;
+  int ncar;
+  FILE * fp;
+
+  scanf("%s", nome);
+  if(fp = fopen(nome, "r")) {
+    ncar = 0;
+    nrighi = 0;
+    nmaxcar = 0;
+    nmincar = 0;
+    nfrasi = 0;
+    while(fscanf("%c", &car) != EOF) {
+      if (car == EOL) {
+        nrighi++;
+        if (ncar > nmaxcar)
+          nmaxcar = ncar;
+        else if (ncar < nmincar)
+          nmincar = ncar;
+        ncar = 0;
+      } else if (car != SKIP) {
+          if (car == EOP)
+            nfrasi++;
+          ncar++;
+      }
+    }
+  fcolse (fp);
+  
+  printf("max: %d", nmaxcar);
+  printf("min: %d", nmincar);
+  printf("righe: %d", nrighi);
+  printf("frasi: %d", nfrasi);
+  } else
+    printf("ERRORE");
+  return 0;
+}
+
+list_t * reftok(list_t * h, int k)
+{
+  list_t * p;
+  int len;
+
+  len = listlen(h);
+  pos = listlen - k;
+  if(pos > 0) {
+    p = h;
+    while (pos > 0) {
+      p = p->next;
+      pos--;
+    }
+  } else
+    p = NULL;
+  return p;
+}
+
+list_t * listlen(list_t * h)
+{
+  int len;
+
+  len = 0;
+  while (h) {
+    h = h->next;
+    len++:
+  }
+  return len;
+}

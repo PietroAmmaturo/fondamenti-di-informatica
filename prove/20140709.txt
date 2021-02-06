@@ -1,0 +1,244 @@
+A = -4A_16MS
+B = -59_10MS
+
+|A| = 01001010_2C2
+4 = 0100
+A = 1010
+A = -|A| = 10110110_2C2
+
+|B| = 0111011_2C2
+59 1
+29 1
+14 0
+07 1
+03 1
+01 1
+00
+B = -|B| = 1000101_2C2
+
+estendo in segno B = 11000101_2C2
+A + B
+..............
+.1....1.......
+..10110110+
+..11000101=
+..--------
+..01111011
+
+si verifica overflow: operandi negativi e risultato positivo
+
+-B = |B| = 00111011_2C2
+A + -B
+..............
+...11111......
+..10110110+
+..00111011=
+..--------
+..11010001
+
+operandi discordi: non si verifica overflow
+
+######################################################################################
+
+segno : 1
+
+parte intera
+
+2 = 10_2
+
+parte decimale
+
+.015625 = 1000000
+
+015625 0
+031250 0
+062500 0
+125000 0
+250000 0
+500000 0
+000000 1
+
+in virgola fissa
+
+2.015625 = 10.1000000
+
+esponente e mantissa
+
+exp = 1 + 127 = 128 --> 1000 0000
+128 0
+64 0
+32 0
+16 0
+8 0
+4 0
+2 0
+1 1
+0
+
+mantissa = 01000000
+
+risultato
+
+1 1000 0000 1000 0000 0000 0000 0000 000
+
+##############################################################
+
+#define nov 11, apr 4, giu 6, sett 9 30
+
+int main (int argc, char * argv[])
+{
+  int g, m, a, ngiorni;
+
+  scanf("%d %d %d", &g, &m, &a);
+  if (m == 1)
+    ngiorni = g;
+  else if (m == 2)
+    ngiorni = 31 + g;
+  else if (m == 3)
+    ngiorni = 31 + 28 + g;
+  else if (m == 4)
+    ngiorni = 31 * 2 + 28 + g;
+  else if (m == 5)
+    ngiorni = 30 + 31 * 2 + 28 + g;
+  else if (m == 6)
+    ngiorni = 30 + 31 * 3 + 28 + g;
+  else if (m == 7)
+    ngiorni = 30 * 2 + 31 * 3 + 28 + g;
+  else if (m == 8)
+    ngiorni = 30 * 2 + 31 * 4 + 28 + g;
+  else if (m == 9)
+    ngiorni = 30 * 2 + 31 * 5 + 28 + g;
+  else if (m == 10)
+    ngiorni = 30 * 3 + 31 * 5 + 28 + g;
+  else if (m == 11)
+    ngiorni = 30 * 3 + 31 * 6 + 28 + g;
+  else if (m == 12)
+    ngiorni = 30 * 4 + 31 * 6 + 28 + g;
+  if ((a % 4) == 0)
+    ngiorni++;
+  printf("%d", ngiorni);
+  return 0;
+}
+
+int * divisori (int num)
+{
+  int * ris;
+  int i, cont, half;
+
+  cont = 0;
+  half = num / 2;
+  for(i = 1; i <= half; i++)
+    if((num % i) == 0)
+      cont++;
+  if(ris = malloc(sizeof(int) * cont)) {
+      cont = 0;
+      for(i = 1; i <= half; i++)
+        if((num % i) == 0) {
+          *(num + cont) = i;
+          cont++;
+        }
+  } else
+    printf("divisori : errore malloc");
+  return 0;
+}
+
+int amicali(int numa, int  numb)
+{
+  int sum, half, ris, i;
+
+  sum = 1;
+  half = numa / 2;
+  for(i = 2; i <= half; i++)
+    if((numa % i) == 0)
+      sum += i;
+  if (sum == b) {
+    sum = 1;
+    half = numb / 2;
+    for(i = 2; i <= half; i++)
+      if((numb % i) == 0)
+        sum += i;
+    if(sum == a)
+      ris = 1;
+    else
+      ris = 0;
+  }
+  else
+    ris = 0;
+  return ris;
+}
+
+#define DIM 100
+#define MAXLEN 60
+
+int main(int argc, char * argv[])
+{
+  int m1[DIM][DIM], m2[DIM][DIM], i, j;
+  FILE * fia, * fib, * fo;
+  char namea[MAXLEN + 1], nameb[MAXLEN + 1];
+
+  scanf("%s %s", namea, nameb);
+  if(fia = fopen(namea, "r")) {
+    for(i = 0; i < DIM; i++)
+      for(j = 0; j < DIM; j++)
+        fscanf(fia, "%d", m1[i][j]);
+    fclose (fia);
+  } else
+    printf("errore apertura file: %s", namea);
+  if(fib = fopen(nameb, "r")) {
+    for(i = 0; i < DIM; i++)
+      for(j = 0; j < DIM; j++)
+        fscanf(fib, "%d", m[i][j]);
+    fclose (fib);
+  } else
+    printf("errore apertura file: %s", nameb);
+  if(fo = fopen(nameo, "r")) {    i = 0;
+    for(i = 0; i < DIM; i++)
+      for(j = 0; j < DIM; j++)
+        fprintf(fo, "%d", ((float)(m1[i][j] + m2[i][j]) / 2.0));
+    fclose (fo);
+  } else
+    printf("errore apertura file: %s", namo);
+}
+
+#define DIM 10
+void analisiCampo(mat CampoGioco[][DIM]) /*so che è quadrata*/
+{
+  int i, j, k, nnavtot, nnavrow, navbylen[DIM] = {0,0,0,0, 0,0,0,0, 0,0}, maxnavlen, minnavlen, navlen;
+  int * cg;
+  
+  cg = CampoGioco
+  nnavtot= 0;
+  for (i = 0; i < DIM; i++) {
+    nnavrow = 0;
+    printf("\nRiga %d: ", (i + 1));
+    for (j = 0; j < DIM; j++) {
+      navlen = 0;
+      if(cg[i][j] == 1) {
+        for(k = j; k < DIM && cg[i][k] == 1; k++)
+          navlen++;
+        printf("1 nave lunga %d ", navlen);
+        navbylen[navlen - 1]++;
+        nnavtot++;
+        nnavrow++;
+        if (nnavtot == 1) {
+          maxnavlen = navlen;
+          minnavlen = navlen;
+        } else if (navlen > maxnavlen)
+          maxnavlen = navlen;
+        else if (navlen < minnavlen)
+          minnavlen = navlen;
+        j = k;
+      }
+    }
+  }
+  printf("\n\nTotale navi: %d", nnavtot);
+  printf("\n\nLunghezza nave piu' corta trovata: %d", minnavlen);
+  printf("\nLunghezza nave piu' lunga trovata: %d", maxnavlen);
+  printf("\n");
+  for(i = 0; i < DIM; i++)
+    printf("Numero di navi lunghe %d: %d", (i + 1), navbylen[i]);
+}
+  
+  
+  
+  

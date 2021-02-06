@@ -37,6 +37,7 @@ int main (int argc, char * argv[]){
 		if (ff = fopen(FILE_FRI, "rb")){
 			if (fo = fopen(FILE_OUT, "wb")){
 					
+					
 					/*memorizza frigo*/
 					fread(fri, sizeof(ingrediente), NUM_ING, ff);
 

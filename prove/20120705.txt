@@ -1,0 +1,120 @@
+A = +D1_16
+B = 100110010_2C2
+
+A = |A| = 010110001_2C2
+D = 1011
+1 = 0001
+
+A + B
+...........
+....11.....
+..010110001+
+..100110010=
+..---------
+..111100011
+
+segni discordi: non si verifica overflow
+
+-B = 011001110_2C2
+A + -B
+...........
+..1........
+..010110001+
+..011001110=
+..---------
+..101111111
+
+operandi positivi e risultato egativi: si verifica overflow
+
+############################################################
+
+int sin_taylor (float x, int n)
+{
+  float ris, sum, sign, num, den;
+  int k;
+
+  sum = 0;
+  k = 0;
+  sign = pow(-1, k);
+  num = pow(x, 2 * ((float)k) + 1);
+  den = fact(2 * ((float)k) + 1);
+  sum = sign * num / den;
+  for(k = 1; k <= n; k++) {
+    sign = pow(-1, k);
+    num = pow(x, 2 * ((float)k) + 1);
+    den = fact(2 * ((float)k) + 1);
+    sum += sign * num / den;
+  }
+  return sum;
+}
+
+int fact(num)
+{
+  int ris;
+ 
+  ris = num;
+  num--;
+  wile (num) {
+    ris *= num;
+    num--;
+  }
+  return ris;
+}
+
+list_t * swapnodes(list_t * h, int k)
+{
+  list_t * p;
+  int lenl, cont;
+  int tmpk, tmprevk, revk;
+
+  lenl = 0;
+  p = h;
+  while (p) {
+    lenl++;
+    p = p->next;
+  }
+  if (k <= lenl) {
+    revk = lenl - k;
+    cont = 0;
+    while (p) {
+      if(cont == k) {
+        tmpk = p->info;
+      }
+      if(cont == revk) {
+        tmprevk = p->info;
+      }
+      cont++;
+    }
+    cont = 0;
+    while (p) {
+      if(cont == k) {
+        p->info = tmprevk;
+      }
+      if(cont == revk) {
+        p->info = tmpk;
+      }
+      cont++;
+    }
+  }
+  return h;
+}
+
+void nulltris(int arr[], int dim)
+{
+  int i;
+  int notfound;
+
+  notfound = 1;
+  for(i = 0; i < dim && notfound; i++) {
+    for(j = 0; j < dim && notfound; j++) {
+      for(k = 0; k < dim && notfound; k++) {
+        if((arr[i] + arr[j] + arr[k]) == 0) {
+          printf("%d %d %d, arr[i], arr[j], arr[k]);
+          notfound = 0;
+        }
+      }
+    }
+  }
+  if(notfound)
+    printf("nessuna tripletta");
+}

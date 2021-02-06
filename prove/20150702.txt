@@ -1,0 +1,181 @@
+A = -5B_16MS
+B = +71_10MS
+
+|A| = 01011011_2C2
+5 = 0101
+B = 1011
+A = -|A| = 10100101_2C2
+
+|B| = B = 01000111_2C2
+71 1
+35 1
+17 1
+8 0
+4 0
+2 0
+1 1
+0
+
+A + B
+............
+......111...
+..10100101+
+..01000111=
+..--------
+..11101100
+
+non si verifica overflow: operandi discordi
+
+-B = 10111001_2C2
+A + -B
+............
+.1.1....1...
+..10100101+
+..10111001=
+..--------
+..01011110
+
+si verifica overflow: operandi negativi e risultato positivo
+
+#########################################################################################
+
+int main(int argc, char * argv[])
+{
+  int last, tmp, control, mancante;
+
+  mancante = 0;
+  control = 1;
+  fscanf("%d", &tmp);
+  do {
+    last = tmp;
+    fscanf("%d", &tmp);
+    if(tmp == (last + 1))
+      ;
+    else if(tmp = last + 2)
+      mancante = last + 1;
+    else
+      control = 0;
+  } while (tmp > 0 && control);
+  if (control) {
+    if (mancante)
+      printf("%d", mancante);
+    else
+      printf("non manca alcun valore");
+  } else
+    printf("errore, la sequenza non rispettava gli standard");
+  return 0;
+}
+
+int main(int argc, char * argv)
+{
+  int n, ris, proprieta;
+  int i;
+
+  scanf("%d", &n);
+  i = 1;
+  while (!proprieta) {
+    ris = n * i;
+    proprieta = hasolocifre(ris);
+    i++;
+  }
+  printf("%d", ris);
+  return 0;
+}
+
+#define BASE 10
+#define CA 0
+#define CB 9
+int hasolizerienove(int val)
+{
+  int tmp, ris;
+
+  ris = 1;
+  while (val && ris) {
+    tmp = val % 10;
+    if (tmp != CA && tmp != CB)
+      ris = 0;
+    val = val / BASE;
+  }
+  return ris;
+}
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+list_t * mancanti(char nome[])
+{
+  list_t * h = NULL;
+  int tmp, last, control;
+  FILE * fp;
+
+  if(fp = fopen(nome, "r")) {
+    fscanf(fp, "%d", &tmp);
+    if(!feof(fp)) {
+      last = tmp;
+      fscanf(fp, "%d", &tmp);
+      control = 1;
+      while(!feof(fp) && control) {
+        if (tmp == (last + 1))
+          ;
+        else if (tmp == (last + 2))
+          h = append(h, last + 1);
+        else
+          control = 0;
+        fscanf(fp, "%d", &tmp);
+      }
+    }
+    fclose (fp);
+  } else
+    printf("mancanti: errore apertura file: %s", nome);
+  if (control)
+    printf("errore, il contenuto del file non rispetta gli standard");
+  return h;
+}
+
+list_t * append(list_t * h, int val)
+{
+  list_t * p, * tmp;
+  
+  if (tmp = malloc(sizeof(list_t))) {
+    tmp->info = val;
+    tmp->next = NULL;
+    if (h) {
+      p = h;
+      while (p->next)
+        p = p->next;
+      p->next = tmp;
+    } else
+      h = tmp;
+  } else
+    printf("append: errore malloc");
+  return h;
+}
+
+typedef struct {
+  float gradi, primi, secondi;
+} tgrado;
+
+void radianti2gradi (float val, tgrado * new)
+{
+  float tmp;
+
+  tmp = (val * 180) / M_PI;
+  new->secondi = tmp % 60;
+  tmp = tmp / 60;
+  new->primi = tmp % 60;
+  tmp = tmp / 60;
+  new->gradi = tmp;
+}
+
+void gradi2radianti (tgrado * val, float * new)
+{
+  float tmp;
+  
+  tmp = val->gradi + val->primi / 60 + val->secondi / 3600;
+  *new = (normale * M_PI) / 180;
+}
+
+
+  

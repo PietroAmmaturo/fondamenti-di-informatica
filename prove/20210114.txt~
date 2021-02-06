@@ -1,0 +1,118 @@
+A
+
+FALSO
+
+#############################################################
+1 2 3 4 5 6 7 8
+dim = 8
+arr[4] = 5;
+arr[2] = 3
+arr[6] = 7;
+
+1 2 3 4 5
+arr[2] = 3
+arr[1] = 2
+arr[3] = 4
+void quartili(int arr[], int dim, int * q1, int * q2, int * q3)
+{
+  int i, j;
+  int minpos;
+
+  for (i = 0; i < dim - 1; i++) {
+    minpos = 1;
+    for (j = i + 1; j < dim; j++)
+      if (arr[j] < arr[minpos])
+        minpos = j;
+    tmp = arr[i];
+    arr[i] = arr[minpos];
+    arr[minpos] = arr[i];
+  }
+  *q1 = arr[dim / 4];
+  *q2 = arr[dim / 2];
+  *q3 = arr[(dim * 3) / 4];
+}
+
+###########################################################
+
+list_t * compattalista(list_t * h)
+{
+  list_t * p;
+
+  if (h) {
+    p = h;
+    while (p->next) {
+      p->next = delete(p->next, p->info);
+      p = p->next;
+    }
+  }
+  return h;
+}
+
+typedef struct elem_s {
+  int info;
+  struct elem_s * next;
+} list_t;
+
+h = compattalista(h);
+
+#######################################################àà##
+
+int cercacerniera (char s1[], char s2[])
+{
+  int i, j;
+  int len1, len2;
+
+  len1 = strlen(s1);
+  len2 = strlen(s2);
+  for (i = len2; i > 0; i--)
+    if (s1[0] == s2[i]) {
+      valida = 1;
+      for (j = 0; s2[j] != '\0' && valida; j++)
+        if (s1[j] != s2[j + i])
+          valida = 0;
+      if (valida)
+        index = i;
+    }
+  if (index)
+    return index;
+  else
+    return -1;
+}
+
+mareggiata trema
+len1 = 10
+len2 = 5
+start = 2;
+len = 10 - 2 + 5 - 2
+char * cerniera (char s1[], char s2[])
+{
+  char * new;
+  int i, len1, len2, start, len;
+
+  len1 = strlen(s1) - start;
+  len2 = strlen(s2) - start;
+  start = cercacerniera(s1, s2);
+  lennew = len1 + len2;
+  if(new = malloc(sizeof(char) * (len + 1))) {
+    *(new + len) = '\0';
+    for(i = 0; i < len1; i++)
+      *(new + i) = s1[i];
+    for(i = 0; i < len2; i++)
+      *(new + i + len1) = s2[i];
+  } else
+    printf("errore malloc");
+  return new;
+}
+
+int main(int argc, char * argv[])
+{
+  char * ris;
+
+  if(argc == 3) {
+    ris = cerniera(argv[1], argv[2]);
+    printf("%s", ris);
+    free (ris);
+  } else
+    printf("si aspettano 2 stringhe da riga di comando");
+  return 0;
+}
