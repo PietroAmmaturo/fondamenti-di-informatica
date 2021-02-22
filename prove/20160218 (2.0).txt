@@ -1,0 +1,154 @@
+A = -A1_16MS
+B = 101010001_2C2
+
+|A| = 010100001_2C2
+A = 1010
+1 = 0001
+A = - |A| = 101011111_2C2
+
+B = 101010001_2C2
+
+A + B
+.............
+.1.1.11111...
+..101001111+
+..101010001=
+..---------
+..010110000
+
+si verifica overflow: operandi negativi e risultato positivo
+
+-B = 010101111_2C2
+A + -B=
+...........
+.111111111.
+..101011111+
+..010101111=
+..---------
+..000001110
+
+non si verifica overflow: operandi discordi
+
+#define BASE 10
+int lefttprime(int val)
+{
+  int exp, eprimo;
+  
+  exp = 1;
+  while(exp < val)
+    exp = exp * BASE;
+  eprimo = 1;
+  while(exp >= 10 && eprimo) {
+    eprimo = isprime(val % exp);
+    exp = exp / BASE;
+  }
+  return eprimo;
+}
+
+int isprime(int num)
+{
+  int i;
+  int ris;
+
+  if(num == 2)
+    ris = 1;
+  else if(num == 1 || (num % 2) == 0)
+    ris = 0;
+  else {
+    ris = 1;
+    half = num / 2;
+    for(i = 3; i < half && ris; i = i + 2)
+      if (num % i)
+        ris = 0;
+  }
+  return ris;
+}
+
+int vette(int * seq, int dim)
+{
+  int isvetta;
+  isvetta = 1;
+  for(i = 1; i < dim && isvetta; i++)
+    if(seq[i] > seq[0])
+      isvetta = 0;
+  return vette(&seq[1], dim - 1) + isvetta;
+}
+
+typedef struct _d {
+  int year;
+  int month;
+  int day;
+} date_t;
+
+void firstandlast(char name[], date_t * firstd, date_t * lastd)
+{
+  FILE * fp;
+  date_t d;
+
+  if(fp = fopen(nome, "r")) {
+    if(fscanf("%d %d %d", lastd.year, lastd.month, lastd.day) == 3) {
+      firstd->year = lastd->year;
+      firstd->month = lastd->month;
+      firstd->day = lastd->day;  
+      while(fscanf("%d %d %d, &(d.year), &(d.month), &(d.day)) == 3) {
+        if(d.year > lastd->year || (d.year == lastd->year && d.month > lastd->month)
+           || (d.year == lastd->year && d.month == lastd->month && d.day > lastd->day)) {
+          lastd->year = d.year;
+          lastd->month = d.month;
+          lastd->day = d.day;
+        }
+        else if (d.year < firstd->year || (d.year == firstd->year && d.month < firstd->month)
+                 || (d.year == firstd->year && d.month == firstd->month && d.day < firstd->day)) {
+          firstd->year = d.year;
+          firstd->month = d.month;
+          firstd->day = d.day;
+        }
+      }
+    }
+    fclose(fp); 
+  } else
+    printf("errore apertura file");
+}
+
+int main(int argc, char * argv[])
+{
+  date_t primo, ultimo;
+  if(argc == 2) {
+    firstandlast(argv[1], &primo, &ultimo);
+    printf("periodo dal &d-%d-%d al %d-%d-%d",
+            primo.day, primo.month, primo.year,
+            ultimo.day, ultimo.month, ultimo.year)
+  }
+  else
+    printf("si aspetta il nome di un file da riga di comando");
+  return 0;
+}
+
+list_t * unisci(list_t * h1, list_t * h2)
+{
+  list_t * p1, p2;
+  list_t * new;
+  new = NULL;
+
+  p1 = h1;
+  p2 = h2;
+  while(p1 && p2) {
+    while(p1 && p2 && p1->info <= p2->info && p1->info != new->info) {
+      push(new, p1->info);
+      p1 = p1->next;
+    }
+    while(p1 && p2 && p1->info > p2->info != new->info) {
+      push(new, p2->info);
+      p2 = p2->next;
+    }
+  }
+  while(p1 && p1->info != new->info) {
+      push(new, p1->info);
+      p1 = p1->next;
+  }
+  while(p2 && p2->info != new->info) {
+      push(new, p2->info);
+      p2 = p2->next;
+  }
+  return new;
+}

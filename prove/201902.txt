@@ -1,0 +1,126 @@
+
+void indexsumaboveval(int mat[][NCOL], int nr, int nc, int val, int * indexrow, int * indexcol)
+{
+  int sum, i, j;
+  int ir, ic;
+
+  sum = 0;
+  ir = -1;
+  ic = -1; /*evito di mettere un if alla fine, in cambio di due assegnamenti*/
+  found = 0;
+  for (i = 0; i < nr && !found; i++)
+    for (j = 0; j < nc && !found; j++) {
+      sum += ma[i][j];
+      if (sum > val) {
+        found = 1;
+        ir = i;
+        ic = j;
+      }
+    }
+  *indexrow = ir;
+  *indexcol = ic;
+}
+
+#define FILENAME "./dizionario.txt"
+#define MAXLEN 25
+int dimmianagrammi (char vocabolo)
+{
+  int numana;
+  char parola[MAXLEN + 1];
+  FILE * fp;
+
+  if (fp = fopen(FILENAME, "r")) {
+    numana = 0;
+    while (fscanf(fp, %s, voc) != EOF) {
+      if (anagramma(vocabolo, parola))
+        numana++;
+    }
+    fclose (fp);
+  } else {
+    numana = -1;
+  }
+  return numana;
+}
+
+#define FILENAME "./dizionario.txt"
+#define MAXLEN 25
+int dimmianagrammi (int num)
+{
+  int numana;
+  char strval[MAXLEN + 1];
+  FILE * fp;
+  strnum[MAXLEN + 1];
+
+  if (fp = fopen(FILENAME, "r")) {
+    revitoa(strnum, num);
+    numana = 0;
+    while (fscanf(fp, %s, val) != EOF) {
+      if (anagramma(strnum, strval))
+        numana++;
+    }
+    fclose (fp);
+  } else {
+    numana = -1;
+  }
+  return numana;
+}
+
+void revitoa(char s[], int n)
+{
+  int cont;
+
+  cont = 0;
+  while (n) {
+    s[cont] = n % 10;
+    n = n / 10;
+    cont++;
+  }
+  s[cont] = '\0';
+}
+
+list_t * int2list (int num)
+{
+  list_t * h, * p;
+
+  h = NULL;
+  if (num > 0) {
+    while (num) {
+      tmp = num % 10;
+      cont = tmp;
+      while (cont) {
+        push (h, tmp);
+        cont--;
+      }
+      num = num / 10;
+    }
+  } else if (num < 0) {
+    num = -num;
+    multiplier = 10;
+    while (multiplier <= num)
+      multiplier = multiplier * 10;
+    while (num) {
+      multiplier = multiplier / 10;
+      tmp = num / multiplier;
+      cont = tmp;
+      while (cont) {
+        push (h, tmp);
+        cont--;
+      }
+      num = num % multiplier;
+    }
+  }
+  return h;
+}
+
+list_t * push(list_t * h, int num)
+{
+  list_t * new;
+
+  if(new = malloc(sizeof(list_t))) {
+    new->info = num;
+    new->next = h;
+    h = new;
+  } else
+    printf("errore malloc");
+  return h;
+}

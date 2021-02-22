@@ -1,0 +1,20 @@
+list_t * delete (list_t * h, int val)
+{
+  list_t * del, * p;
+
+  while (h && h->info == val) {
+    del = h;
+    h = h->next;
+    free (del);
+  }
+  p = h;
+  while (p && p->next) {
+    while (p->next && p->next->info == val) {
+      del = p->next;
+      p->next = p->next->next;
+      free (del);
+    }
+    p = p->next;
+  }
+  return h;
+}

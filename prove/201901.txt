@@ -1,0 +1,111 @@
+typedef struct {
+  int x;
+  int y;
+} point_t;
+
+int regolare (point_t mat[][N], int nr)
+{
+  int lenline, maxlen, lendiag, ris;
+  int i, j;
+
+  for (i = 0; i < nr; i++) {
+    lenline = 0;
+    for (j = 0; j < nr - 1; j++)
+      lenline = lenline + dist(mat[i][j], mat[i][j + 1]);
+    if (lenline > maxlen)
+      maxlen = lenline;
+  }
+
+  for (i = 0; i < nr; i++) {
+    lenline = 0;
+    for (j = 0; j < nr - 1; j++)
+      lenline = lenline + dist(mat[j][i], mat[j + 1][i]);
+    if (lenline > maxlen)
+      maxlen = lenline;
+  }
+
+  for (i = 0; i < nr - 1; i++)
+    lendiag = lendiag + dist(mat[i][i], mat[i + 1][i + 1]);
+
+  if (lendiag > maxlen)
+    ris = 1;
+  else
+    ris = 0;
+  return ris;
+}
+
+#define JOLLY 'x'
+void genera(char s[])
+{
+  if (s[start] == JOLLY && s[0] != '\0') {
+    s[start] = '1';
+    genera(s, start + 1);
+    s[start] = '0';
+    genera(s, start + 1);
+    s[start] = JOLLY;
+  } else if (s[0] != '\0') {
+    genera(s, start + 1);
+  } else
+    printf("%s", s);
+}
+
+#define BASE 10
+int mostfrequent(FILE * fp)
+{
+  int contacifre[BASE];
+  int i, tmp, num, indexmax;
+
+  for (i = 0; i < BASE; i++)
+    contacifre[i] = 0;
+
+  if(fscanf(fp, "%d", &num) == 1) {
+    tmp = num;
+    while (tmp) {
+      contacifre[tmp % BASE]++;
+      tmp = tmp / BASE;
+    }
+    for (i = 0; i < BASE; i++)
+      if (contacifre[i] >= contacifre[indexmax])
+        indexmax = i;
+    ris = indexmax;
+  } else {
+    ris = -1;
+  }
+  return ris;
+}
+
+list_t * listadis (list_t * h)
+{
+  list_t * newh, * p;
+  int switch;
+
+  newh = NULL;
+  p = h;
+  switch = 0;
+  while (p) {
+    if (switch)
+      append (newh, p->info);
+    switch = 1 - switch;
+  }
+  return newh;
+}
+
+list_t * append (list_t * h, int val)
+{
+  list_t * p, *new;
+
+  if(new = malloc(sizeof(list_t))) {
+    tmp->next = NULL;
+    tmp->info = val;
+    if (h) {
+      p = h;
+      while (p->next)
+        p = p->next
+      p->next = tmp;
+    } else {
+      h = tmp;
+    }
+  } else
+    printf("errore malloc");
+  return h;
+}

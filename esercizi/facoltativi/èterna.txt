@@ -1,0 +1,43 @@
+
+int isterna (int a, int b, int c);
+
+int main (int argc, char * argv[])
+{
+  int newb, newc, cont, a, b, c;
+  
+  cont = 0;
+  if(scanf("%d", &a) == 1 && a != -1)
+    if(scanf("%d", &b) == 1 && b != -1)
+      if(scanf("%d", &c) == 1 && c != -1) {
+        if(isterna(a, b, c))
+          cont++;
+
+        scanf("%d", &new);
+        while (new != -1) {
+          tmpc = c;
+          tmpb = b;
+          c = new;
+          b = tmpc;
+          a = tmpb;
+          if(isterna(a, b, c))
+           cont++;
+          scanf("%d", &new);
+        }
+
+  printf("%d", cont);
+  return 0;
+}
+
+int isterna (int a, int b, int c)
+{
+  if (a > b && a > c)
+    if (a*a == b*b + c*c)
+      return 1;
+  else if (b > a && b > c)
+    if (b*b == a*a + c*c)
+      return 1;
+  else
+    if (c*c == a*a + b*b)
+      return 1;
+  return 0;
+}
